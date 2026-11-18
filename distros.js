@@ -63,6 +63,8 @@ function makeCard(d, isClone) {
   initial.className = "distro-initial";
   initial.textContent = d.name.charAt(0);
   const img = document.createElement("img");
+  img.onload = () => initial.remove();   // gambar ada → huruf dihapus
+  img.onerror = () => img.remove();      // gambar belum ada → huruf tetap
   img.src = `assets/distros/${d.slug}.png`;
   img.alt = `Logo ${d.name}`;
   img.onerror = () => img.remove(); // kalau gambar belum ada, huruf awal tampil
