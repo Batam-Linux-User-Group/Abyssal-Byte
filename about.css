@@ -1,0 +1,2251 @@
+/* =========================================
+   ABOUT.CSS - Frontend Developer 2
+   Style khusus halaman About Linux (about.html).
+   Semua class diawali .al- (About Linux)
+   agar tidak bentrok dengan style.css.
+   Warna & variabel (--yellow, dll.) diambil dari style.css.
+   ========================================= */
+
+/* ---------- 0. Dasar ---------- */
+
+.al-svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+
+.al-page code,
+.al-mini-term,
+.al-terminal {
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+
+.al-page code {
+  font-size: 0.92em;
+  color: var(--yellow);
+  background: rgba(255, 204, 0, 0.08);
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+
+/* Kotak kaca (glass) yang dipakai banyak elemen, gaya sama dengan .panel */
+.al-card {
+  background: rgba(15, 15, 15, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 19px;
+  padding: 26px;
+}
+
+.al-eyebrow {
+  color: var(--yellow);
+  letter-spacing: 2px;
+}
+
+.al-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--yellow);
+  background: rgba(255, 204, 0, 0.1);
+  border: 1px solid #665300;
+  border-radius: 20px;
+  padding: 5px 11px;
+  margin-bottom: 14px;
+}
+
+.al-badge .al-svg {
+  width: 14px;
+  height: 14px;
+}
+
+.al-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 204, 0, 0.12);
+  color: var(--yellow);
+  margin-bottom: 16px;
+  flex: none;
+}
+
+.al-icon .al-svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Teks khusus pembaca layar (screen reader) */
+.al-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- 1. Garis progres baca ---------- */
+
+.al-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--yellow), #ffe36a);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  z-index: 10;
+}
+
+/* ---------- 2. Hero ---------- */
+
+.al-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: center;
+  padding: 44px;
+  border-radius: 19px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: radial-gradient(ellipse at 85% 30%, #4d3b00 0, #17140a 38%, #101010 75%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Pola kotak-kotak tipis di belakang hero */
+.al-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse at 75% 50%, #000 15%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 75% 50%, #000 15%, transparent 70%);
+}
+
+.al-breadcrumb {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 18px;
+}
+
+.al-breadcrumb a:hover {
+  color: var(--yellow);
+}
+
+.al-breadcrumb b {
+  color: #ddd;
+  font-weight: 600;
+}
+
+.al-hero h1 {
+  font-size: clamp(34px, 4.2vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+  font-weight: 800;
+  margin: 8px 0 16px;
+}
+
+.al-hero h1 em {
+  font-style: normal;
+  color: var(--yellow);
+}
+
+.al-hero-sub {
+  color: #bbb;
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 0 26px;
+}
+
+.al-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.al-ghost-btn {
+  padding: 12px 19px;
+  border-radius: 30px;
+  border: 1px solid #444;
+  font-size: 13px;
+  font-weight: 700;
+  color: #eee;
+  transition: 0.2s;
+}
+
+.al-ghost-btn:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+/* Jendela terminal */
+.al-terminal {
+  background: #0b0b0b;
+  border: 1px solid #2e2e2e;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55), 0 0 40px rgba(255, 204, 0, 0.08);
+}
+
+.al-terminal-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 14px;
+  background: #161616;
+  border-bottom: 1px solid #262626;
+}
+
+.al-terminal-bar i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.al-terminal-bar i:nth-child(2) {
+  background: #febc2e;
+}
+
+.al-terminal-bar i:nth-child(3) {
+  background: #28c840;
+}
+
+.al-terminal-bar span {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #888;
+  white-space: nowrap;
+}
+
+.al-terminal-body {
+  min-height: 260px;
+  padding: 18px 20px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: #d6d6d6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.al-t-prompt {
+  color: var(--yellow);
+}
+
+.al-t-cmd {
+  color: #fff;
+}
+
+.al-t-out {
+  color: #9a9a9a;
+}
+
+.al-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.05em;
+  margin-left: 1px;
+  background: var(--yellow);
+  vertical-align: -2px;
+  animation: alBlink 1s steps(1) infinite;
+}
+
+@keyframes alBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------- 3. Angka penting ---------- */
+
+.al-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.al-stat {
+  background: rgba(15, 15, 15, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 19px;
+  padding: 20px 22px;
+}
+
+.al-stat strong {
+  display: block;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--yellow);
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.al-stat span {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #aaa;
+}
+
+/* ---------- 4. Sub-navigasi menempel ---------- */
+
+.al-subnav {
+  position: sticky;
+  top: 78px; /* tinggi topbar */
+  z-index: 3;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  margin-top: 20px;
+  padding: 8px;
+  background: rgba(12, 12, 12, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  scrollbar-width: none;
+}
+
+.al-subnav::-webkit-scrollbar {
+  display: none;
+}
+
+.al-subnav a {
+  flex: 0 0 auto;
+  padding: 9px 14px;
+  border-radius: 11px;
+  font-size: 13px;
+  color: #bbb;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.al-subnav a b {
+  font-size: 11px;
+  color: #666;
+  margin-right: 7px;
+}
+
+.al-subnav a:hover {
+  background: #222;
+  color: #fff;
+}
+
+.al-subnav a.is-active {
+  background: var(--yellow);
+  color: #111;
+  font-weight: 700;
+}
+
+.al-subnav a.is-active b {
+  color: #5a4800;
+}
+
+/* ---------- 5. Kepala tiap bagian ---------- */
+
+.al-section {
+  margin-top: 56px;
+  /* supaya judul tidak tertutup topbar + sub-navigasi saat diklik */
+  scroll-margin-top: 150px;
+}
+
+.al-section-head {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  margin-bottom: 26px;
+}
+
+.al-num {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 204, 0, 0.6);
+}
+
+.al-section-head .eyebrow {
+  margin-bottom: 6px;
+}
+
+.al-section-head h2 {
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 8px;
+}
+
+.al-section-head p:last-child {
+  color: #aaa;
+  font-size: 14.5px;
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0;
+}
+
+.al-subhead {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 38px 0 6px;
+}
+
+.al-subtext {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.al-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  margin: 0 0 4px;
+}
+
+.al-card-title .al-svg {
+  color: var(--yellow);
+}
+
+.al-hint {
+  font-size: 12.5px;
+  color: #888;
+  margin: 0;
+}
+
+/* ---------- 6. Pengertian ---------- */
+
+.al-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.al-lead {
+  font-size: 19px;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 16px;
+}
+
+.al-lead b {
+  color: var(--yellow);
+}
+
+.al-text {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #bbb;
+  margin: 0 0 14px;
+}
+
+.al-text b {
+  color: #eee;
+}
+
+.al-analogy {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  margin-top: 18px;
+  border-radius: 14px;
+  background: rgba(255, 204, 0, 0.05);
+  border: 1px dashed #6b590d;
+}
+
+.al-analogy > .al-svg {
+  width: 26px;
+  height: 26px;
+  color: var(--yellow);
+}
+
+.al-analogy b {
+  display: block;
+  color: var(--yellow);
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.al-analogy p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #ccc;
+}
+
+.al-analogy em {
+  font-style: normal;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Diagram lapisan (bentuk piramida: makin atas makin sempit) */
+.al-layers {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.al-layer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  background: #1b1b1b;
+  color: #ddd;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.al-layer[data-layer="0"] {
+  margin-inline: 15%;
+}
+
+.al-layer[data-layer="1"] {
+  margin-inline: 10%;
+}
+
+.al-layer[data-layer="2"] {
+  margin-inline: 5%;
+}
+
+.al-layer small {
+  font-size: 11px;
+  font-weight: 500;
+  color: #888;
+}
+
+.al-layer:hover {
+  border-color: #806700;
+  transform: translateY(-2px);
+}
+
+.al-layer:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+.al-layer.is-active {
+  background: linear-gradient(90deg, var(--yellow), var(--yellow2));
+  border-color: transparent;
+  color: #111;
+  box-shadow: 0 8px 24px rgba(255, 204, 0, 0.18);
+}
+
+.al-layer.is-active small {
+  color: #4d3d00;
+}
+
+.al-layer-detail {
+  min-height: 160px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: #121212;
+  border: 1px solid #2a2a2a;
+}
+
+.al-layer-detail h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: var(--yellow);
+}
+
+.al-layer-detail p {
+  margin: 0 0 12px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #bbb;
+}
+
+.al-layer-detail.is-swapping {
+  animation: alFadeUp 0.35s ease;
+}
+
+@keyframes alFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.al-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.al-chips span {
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 11px;
+  color: var(--yellow);
+  background: rgba(255, 204, 0, 0.06);
+  border: 1px solid #665300;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+/* Istilah penting */
+.al-terms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.al-term-word {
+  display: inline-block;
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 12.5px;
+  color: var(--yellow);
+  background: rgba(255, 204, 0, 0.08);
+  padding: 4px 10px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.al-term h3,
+.al-funfact h3 {
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+
+.al-term p,
+.al-funfact p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: #aaa;
+  margin: 0 0 10px;
+}
+
+.al-term p:last-child,
+.al-funfact p:last-child {
+  margin-bottom: 0;
+}
+
+.al-funfact b {
+  color: #eee;
+}
+
+/* Gambar kode + fun fact */
+.al-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.al-figure {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.al-figure img {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: top left;
+  border-bottom: 1px solid #262626;
+}
+
+.al-figure figcaption {
+  padding: 14px 18px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #999;
+}
+
+.al-figure figcaption b {
+  color: var(--yellow);
+}
+
+.al-funfact {
+  background:
+    radial-gradient(circle at 100% 0, rgba(255, 204, 0, 0.12), transparent 50%),
+    rgba(15, 15, 15, 0.65);
+}
+
+/* ---------- 7. Sejarah (timeline) ---------- */
+
+.al-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.al-filter button {
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 30px;
+  border: 1px solid #333;
+  background: #161616;
+  color: #bbb;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.al-filter button:hover {
+  border-color: #806700;
+  color: #fff;
+}
+
+.al-filter button.is-active {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: #111;
+}
+
+.al-timeline {
+  position: relative;
+  padding: 4px 0;
+}
+
+/* Garis tengah abu-abu */
+.al-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #2b2b2b;
+  transform: translateX(-50%);
+}
+
+/* Garis kuning yang memanjang mengikuti scroll */
+.al-timeline-fill {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 0;
+  background: linear-gradient(var(--yellow), #ffe36a);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.al-event {
+  position: relative;
+  width: 50%;
+  padding: 0 40px 24px 0;
+}
+
+.al-event[data-side="right"] {
+  margin-left: 50%;
+  padding: 0 0 24px 40px;
+}
+
+/* Titik di garis tengah */
+.al-event::before {
+  content: "";
+  box-sizing: border-box; /* pseudo-element tidak ikut aturan * di style.css */
+  position: absolute;
+  top: 22px;
+  right: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #111;
+  border: 2px solid #806700;
+  z-index: 2;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.al-event[data-side="right"]::before {
+  right: auto;
+  left: -6px;
+}
+
+.al-event.is-passed::before {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 5px rgba(255, 204, 0, 0.15);
+}
+
+.al-event.is-hidden {
+  display: none;
+}
+
+/* Di layar lebar, kartu kiri & kanan dibuat saling "menyelip"
+   supaya tidak banyak ruang kosong */
+@media (min-width: 761px) {
+  .al-event:not(.is-first) {
+    margin-top: -70px;
+  }
+}
+
+.al-event-card {
+  background: rgba(15, 15, 15, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 18px 20px;
+  transition: border-color 0.3s, transform 0.3s, opacity 0.7s;
+}
+
+.al-event-card:hover {
+  border-color: rgba(255, 204, 0, 0.45);
+  transform: translateY(-3px);
+}
+
+.al-event.is-highlight .al-event-card {
+  background: linear-gradient(135deg, #2a2208, #121212 70%);
+  border-color: rgba(255, 204, 0, 0.35);
+}
+
+.al-event time {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  color: #111;
+  background: var(--yellow);
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.al-era {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888;
+  margin-left: 10px;
+}
+
+.al-event h3 {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.al-event p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #aaa;
+  margin: 0;
+}
+
+/* Tokoh */
+.al-people {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.al-person {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.al-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: none;
+  font-size: 17px;
+  font-weight: 800;
+  color: #111;
+  background: linear-gradient(135deg, var(--yellow), #ff9f1a);
+  box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.12);
+}
+
+.al-person h3 {
+  font-size: 15.5px;
+  margin: 2px 0 2px;
+}
+
+.al-person small {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--yellow);
+  margin-bottom: 8px;
+}
+
+.al-person p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #aaa;
+  margin: 0;
+}
+
+/* ---------- 8. Fungsi ---------- */
+
+.al-func-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.al-func {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+}
+
+.al-func h3 {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.al-func p {
+  flex: 1;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #aaa;
+  margin: 0 0 16px;
+}
+
+.al-cmd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 8px 7px 12px;
+  border-radius: 10px;
+  background: #0c0c0c;
+  border: 1px solid #2a2a2a;
+}
+
+.al-cmd code {
+  background: none;
+  padding: 0;
+  color: #ddd;
+  font-size: 12.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.al-cmd code::before {
+  content: "$ ";
+  color: var(--yellow);
+}
+
+.al-copy {
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: #888;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.al-copy .al-svg {
+  width: 16px;
+  height: 16px;
+}
+
+.al-copy:hover {
+  background: #1d1d1d;
+  color: var(--yellow);
+}
+
+.al-copy.is-copied {
+  color: #3ddc68;
+}
+
+/* Efek hover kartu (sama rasanya dengan .panel di dashboard) */
+.al-func,
+.al-adv,
+.al-term,
+.al-person,
+.al-next-link {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.7s ease;
+}
+
+.al-func:hover,
+.al-adv:hover,
+.al-term:hover,
+.al-person:hover,
+.al-next-link:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 204, 0, 0.45);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 204, 0, 0.08);
+}
+
+/* Linux dipakai di mana */
+.al-uses {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.al-use {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #141414;
+  border: 1px solid #262626;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s, opacity 0.7s;
+}
+
+.al-use .al-svg {
+  width: 26px;
+  height: 26px;
+  color: var(--yellow);
+  margin-bottom: 4px;
+}
+
+.al-use b {
+  font-size: 14px;
+}
+
+.al-use span {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #999;
+}
+
+.al-use:hover {
+  border-color: #806700;
+  background: #1a1709;
+  transform: translateY(-3px);
+}
+
+/* ---------- 9. Karakteristik (tab) ---------- */
+
+.al-tabs {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.al-tablist {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  background: rgba(15, 15, 15, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 19px;
+}
+
+.al-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #bbb;
+  font: inherit;
+  font-size: 13.5px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.al-tab b {
+  width: 20px;
+  font-size: 11px;
+  color: #666;
+}
+
+.al-tab:hover {
+  background: #1f1f1f;
+  color: #fff;
+}
+
+.al-tab:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: -2px;
+}
+
+.al-tab[aria-selected="true"] {
+  background: rgba(255, 204, 0, 0.12);
+  color: var(--yellow);
+  font-weight: 700;
+  box-shadow: inset 3px 0 0 var(--yellow);
+}
+
+.al-tab[aria-selected="true"] b {
+  color: var(--yellow);
+}
+
+.al-tabpanel {
+  background: rgba(15, 15, 15, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 19px;
+  padding: 30px;
+}
+
+/* Tanpa JS semua panel tampil; dengan JS hanya panel aktif */
+.al-js .al-tabpanel:not(.is-active) {
+  display: none;
+}
+
+.al-tabpanels {
+  display: grid;
+  gap: 16px;
+}
+
+.al-js .al-tabpanel.is-active {
+  animation: alFadeUp 0.35s ease;
+}
+
+.al-tabpanel h3 {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.al-tabpanel > p {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #bbb;
+  margin: 0 0 18px;
+  max-width: 760px;
+}
+
+.al-points {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0 0 22px;
+}
+
+.al-points li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.al-points li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 19px;
+  height: 19px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #111;
+  background: var(--yellow);
+}
+
+.al-mini-term {
+  margin: 0;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: #0b0b0b;
+  border: 1px solid #2a2a2a;
+  color: #9a9a9a;
+  font-size: 12.5px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-x: auto;
+}
+
+.al-mini-term span {
+  color: var(--yellow);
+}
+
+/* Simulator izin file */
+.al-perm {
+  margin-top: 16px;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 204, 0, 0.1), transparent 45%),
+    rgba(15, 15, 15, 0.65);
+}
+
+.al-perm-head h3 {
+  font-size: 20px;
+  margin: 0 0 6px;
+}
+
+.al-perm-head p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #aaa;
+  margin: 0 0 20px;
+  max-width: 720px;
+}
+
+.al-perm-head b {
+  color: #eee;
+}
+
+.al-perm-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.al-perm-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+  font-size: 13px;
+}
+
+.al-perm-table th,
+.al-perm-table td {
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.al-perm-table thead th {
+  color: #bbb;
+  font-weight: 600;
+  font-size: 12.5px;
+}
+
+.al-perm-table thead small {
+  display: block;
+  color: #777;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.al-perm-table thead th:first-child,
+.al-perm-table tbody th {
+  text-align: left;
+}
+
+.al-perm-table tbody tr {
+  background: #151515;
+}
+
+.al-perm-table tbody th {
+  border-radius: 10px 0 0 10px;
+  color: #eee;
+}
+
+.al-perm-table tbody td:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+/* Checkbox kustom */
+.al-check {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.al-check input {
+  position: absolute;
+  opacity: 0;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.al-check span {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 2px solid #555;
+  display: grid;
+  place-items: center;
+  transition: 0.2s;
+}
+
+.al-check input:checked + span {
+  background: var(--yellow);
+  border-color: var(--yellow);
+}
+
+.al-check input:checked + span::after {
+  content: "✓";
+  color: #111;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.al-check input:focus-visible + span {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+.al-check:hover span {
+  border-color: var(--yellow);
+}
+
+.al-perm-out {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.al-perm-out > div,
+.al-perm-cmd {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #0b0b0b;
+  border: 1px solid #2a2a2a;
+}
+
+.al-perm-out small,
+.al-perm-cmd small {
+  display: block;
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.al-perm-out code {
+  background: none;
+  padding: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.al-perm-cmd {
+  margin-top: 10px;
+}
+
+.al-perm-cmd code {
+  background: none;
+  padding: 0;
+  color: #eee;
+  font-size: 14px;
+}
+
+.al-perm-cmd code::before {
+  content: "$ ";
+  color: var(--yellow);
+}
+
+.al-presets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.al-presets button {
+  font: inherit;
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 6px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: #161616;
+  color: #eee;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.al-presets button small {
+  display: block;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: #888;
+  margin-top: 2px;
+}
+
+.al-presets button:hover,
+.al-presets button.is-active {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.al-perm-explain {
+  margin: 18px 0 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #ccc;
+}
+
+.al-perm-warn {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(229, 72, 77, 0.1);
+  border: 1px solid rgba(229, 72, 77, 0.45);
+  color: #ffb4b6;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.al-perm-warn[hidden] {
+  display: none;
+}
+
+.al-perm-warn .al-svg {
+  color: #ff6b6b;
+  margin-top: 1px;
+}
+
+/* ---------- 10. Keunggulan ---------- */
+
+.al-adv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.al-adv {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.al-adv-num {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 52px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.04);
+  transition: color 0.3s;
+}
+
+.al-adv:hover .al-adv-num {
+  color: rgba(255, 204, 0, 0.12);
+}
+
+.al-adv h3 {
+  font-size: 16.5px;
+  margin: 0 0 8px;
+}
+
+.al-adv p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #aaa;
+  margin: 0;
+}
+
+/* Tabel perbandingan */
+.al-table-wrap {
+  overflow-x: auto;
+  border-radius: 19px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 15, 15, 0.65);
+}
+
+.al-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.al-table th,
+.al-table td {
+  padding: 14px 18px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #222;
+  line-height: 1.55;
+}
+
+.al-table tbody tr:last-child th,
+.al-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.al-table thead th {
+  background: #141414;
+  color: #ddd;
+  font-size: 13px;
+}
+
+.al-table thead th.al-col-linux {
+  background: var(--yellow);
+  color: #111;
+}
+
+.al-table tbody th {
+  width: 20%;
+  color: #eee;
+  font-weight: 600;
+}
+
+.al-table td {
+  color: #bbb;
+}
+
+.al-table td.al-col-linux {
+  background: rgba(255, 204, 0, 0.05);
+  color: #eee;
+}
+
+.al-table tbody tr {
+  transition: background 0.2s;
+}
+
+.al-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.al-rate {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+  vertical-align: -4px;
+}
+
+.al-rate.good {
+  background: #173a20;
+  color: #5ee37a;
+}
+
+.al-rate.mid {
+  background: #3b330f;
+  color: var(--yellow);
+}
+
+.al-rate.bad {
+  background: #3b1a1a;
+  color: #ff6b6b;
+}
+
+/* Kotak "biar adil" */
+.al-callout {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-top: 16px;
+  padding: 24px;
+  border-radius: 19px;
+  border: 1px solid #3a3a3a;
+  background: repeating-linear-gradient(-45deg, #141414 0 12px, #111 12px 24px);
+}
+
+.al-callout .al-icon {
+  margin: 0;
+}
+
+.al-callout h3 {
+  font-size: 17px;
+  margin: 2px 0 10px;
+}
+
+.al-callout ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+.al-callout li {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #bbb;
+}
+
+.al-callout li::marker {
+  color: var(--yellow);
+}
+
+/* ---------- 11. Kuis ---------- */
+
+.al-quiz {
+  padding: 30px;
+}
+
+.al-quiz-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12.5px;
+  color: #999;
+}
+
+.al-quiz-top b {
+  color: var(--yellow);
+}
+
+.al-quiz-bar {
+  height: 6px;
+  margin: 10px 0 24px;
+  border-radius: 6px;
+  background: #222;
+  overflow: hidden;
+}
+
+.al-quiz-bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--yellow), #ffe36a);
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.al-quiz-q {
+  font-size: 20px;
+  line-height: 1.45;
+  margin: 0 0 18px;
+}
+
+.al-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.al-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  background: #161616;
+  color: #ddd;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.al-option kbd {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #242424;
+  color: #bbb;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.al-option:hover:not(:disabled) {
+  border-color: var(--yellow);
+  transform: translateY(-2px);
+}
+
+.al-option:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+.al-option:disabled {
+  cursor: default;
+}
+
+.al-option.is-correct {
+  border-color: #2fbf4a;
+  background: #11261a;
+  color: #fff;
+}
+
+.al-option.is-correct kbd {
+  background: #2fbf4a;
+  color: #08140c;
+}
+
+.al-option.is-wrong {
+  border-color: #e5484d;
+  background: #2a1213;
+}
+
+.al-option.is-wrong kbd {
+  background: #e5484d;
+  color: #fff;
+}
+
+.al-option.is-dim {
+  opacity: 0.45;
+}
+
+.al-feedback {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  animation: alFadeUp 0.3s ease;
+}
+
+.al-feedback b {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.al-feedback.ok {
+  background: rgba(47, 191, 74, 0.1);
+  border: 1px solid rgba(47, 191, 74, 0.4);
+  color: #c9f5d3;
+}
+
+.al-feedback.ok b {
+  color: #5ee37a;
+}
+
+.al-feedback.no {
+  background: rgba(229, 72, 77, 0.08);
+  border: 1px solid rgba(229, 72, 77, 0.4);
+  color: #ffd1d2;
+}
+
+.al-feedback.no b {
+  color: #ff6b6b;
+}
+
+.al-quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.al-quiz-actions .primary-button {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.al-quiz-actions .primary-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Hasil kuis */
+.al-result {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 30px;
+  align-items: center;
+  animation: alFadeUp 0.4s ease;
+}
+
+.al-score-ring {
+  --p: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: conic-gradient(var(--yellow) calc(var(--p) * 1%), #2b2b2b 0);
+}
+
+.al-score-ring::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: #141414;
+}
+
+.al-score-ring span {
+  position: relative;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.al-score-ring small {
+  font-size: 16px;
+  color: #888;
+}
+
+.al-result h3 {
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+
+.al-result p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #aaa;
+  margin: 0 0 6px;
+}
+
+.al-result .al-quiz-actions {
+  justify-content: flex-start;
+}
+
+/* ---------- 12. Lanjut belajar & referensi ---------- */
+
+.al-next {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.al-next-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 22px 24px;
+}
+
+.al-next-link small {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.al-next-link b {
+  font-size: 15.5px;
+}
+
+.al-next-link > .al-svg {
+  color: var(--yellow);
+  transition: transform 0.25s;
+}
+
+.al-next-link:hover > .al-svg {
+  transform: translateX(4px);
+}
+
+.al-refs {
+  margin-top: 26px;
+  padding: 20px 24px;
+  border-radius: 19px;
+  border: 1px dashed #333;
+}
+
+.al-refs h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+.al-refs h4 .al-svg {
+  color: var(--yellow);
+  width: 18px;
+  height: 18px;
+}
+
+.al-refs ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.al-refs li {
+  font-size: 12.5px;
+  color: #999;
+}
+
+.al-refs li::marker {
+  color: var(--yellow);
+}
+
+.al-refs a:hover {
+  color: var(--yellow);
+  text-decoration: underline;
+}
+
+/* ---------- 13. Tombol kembali ke atas ---------- */
+
+.al-totop {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 6;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--yellow);
+  color: #111;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+
+.al-totop.is-show {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.al-totop:hover {
+  background: #ffe36a;
+}
+
+/* ---------- 14. Pencarian di halaman ---------- */
+
+.al-search-count {
+  font-size: 11px;
+  color: var(--yellow);
+  white-space: nowrap;
+}
+
+.al-search-count:empty {
+  display: none;
+}
+
+.al-search-dim {
+  opacity: 0.22 !important;
+}
+
+.al-search-flash {
+  animation: alFlash 1.4s ease;
+}
+
+@keyframes alFlash {
+  0%,
+  60% {
+    box-shadow: 0 0 0 3px var(--yellow);
+  }
+}
+
+/* ---------- 15. Animasi muncul saat di-scroll ---------- */
+
+/* Sebelum terlihat: transparan & sedikit turun. Setelah .is-visible ditambahkan
+   oleh about.js, elemen kembali ke gaya normalnya (efek hover tetap jalan). */
+.al-js .al-reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Kartu yang tidak punya transition sendiri */
+.al-js .al-section-head,
+.al-js .al-stat,
+.al-js .al-filter,
+.al-js .al-subhead,
+.al-js .al-subtext,
+.al-js .al-intro-grid > .al-card,
+.al-js .al-split > .al-card,
+.al-js .al-tabs,
+.al-js .al-perm,
+.al-js .al-table-wrap,
+.al-js .al-callout,
+.al-js .al-quiz,
+.al-js .al-refs {
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Hormati pengaturan "kurangi animasi" di perangkat pengguna */
+@media (prefers-reduced-motion: reduce) {
+  .al-js .al-reveal:not(.is-visible) {
+    opacity: 1;
+    transform: none;
+  }
+
+  .al-page *,
+  .al-page *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- 16. Responsif ---------- */
+
+@media (max-width: 1300px) {
+  .al-func-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1150px) {
+  .al-hero,
+  .al-intro-grid,
+  .al-split,
+  .al-perm-body {
+    grid-template-columns: 1fr;
+  }
+
+  .al-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .al-adv-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Tab berubah jadi deretan tombol yang bisa digeser */
+  .al-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .al-tablist {
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .al-tablist::-webkit-scrollbar {
+    display: none;
+  }
+
+  .al-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .al-tab[aria-selected="true"] {
+    box-shadow: inset 0 -3px 0 var(--yellow);
+  }
+}
+
+@media (max-width: 1000px) {
+  .al-uses {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .al-terms,
+  .al-people,
+  .al-next {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .al-hero {
+    padding: 28px 22px;
+    gap: 26px;
+  }
+
+  .al-hero-sub {
+    font-size: 14.5px;
+  }
+
+  .al-terminal-body {
+    min-height: 220px;
+    font-size: 12.5px;
+    padding: 14px 16px;
+  }
+
+  .al-subnav {
+    top: 68px; /* tinggi topbar versi HP */
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+
+  .al-section {
+    margin-top: 44px;
+    scroll-margin-top: 136px;
+  }
+
+  .al-section-head {
+    gap: 14px;
+  }
+
+  .al-num {
+    font-size: 40px;
+  }
+
+  .al-card {
+    padding: 20px;
+  }
+
+  .al-func-grid,
+  .al-adv-grid,
+  .al-options {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tombol filter era jadi satu baris yang bisa digeser */
+  .al-filter {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-right: -15px;
+    padding-right: 15px;
+    scrollbar-width: none;
+  }
+
+  .al-filter::-webkit-scrollbar {
+    display: none;
+  }
+
+  .al-filter button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .al-layer[data-layer] {
+    margin-inline: 0;
+  }
+
+  /* Timeline jadi satu kolom, garis di kiri */
+  .al-timeline::before,
+  .al-timeline-fill {
+    left: 7px;
+    transform: none;
+  }
+
+  .al-event,
+  .al-event[data-side="right"] {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 0 18px 32px;
+  }
+
+  .al-event::before,
+  .al-event[data-side="right"]::before {
+    left: 2px;
+    right: auto;
+  }
+
+  .al-tabpanel {
+    padding: 22px;
+  }
+
+  .al-tabpanel h3 {
+    font-size: 22px;
+  }
+
+  .al-presets {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .al-result {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .al-result .al-quiz-actions {
+    justify-content: center;
+  }
+
+  .al-quiz {
+    padding: 22px;
+  }
+
+  .al-quiz-q {
+    font-size: 17px;
+  }
+
+  .al-callout {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .al-totop {
+    right: 14px;
+    bottom: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .al-stats {
+    gap: 10px;
+  }
+
+  .al-stat {
+    padding: 16px;
+  }
+
+  .al-stat strong {
+    font-size: 24px;
+  }
+
+  /* Kartu "dipakai di mana" jadi baris ringkas: ikon di kiri */
+  .al-uses {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .al-use {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 14px;
+    row-gap: 2px;
+    align-items: center;
+    padding: 14px 16px;
+  }
+
+  .al-use .al-svg {
+    grid-row: span 2;
+    margin: 0;
+  }
+
+  .al-perm-table th,
+  .al-perm-table td {
+    padding: 8px 6px;
+  }
+
+  .al-perm-out code {
+    font-size: 18px;
+  }
+}
