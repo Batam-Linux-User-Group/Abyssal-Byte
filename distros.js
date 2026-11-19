@@ -5,32 +5,31 @@
    Scroll mouse dan swipe vertikal tetap menggulir halaman.
    ========================================= */
 
-// Halaman instalasi (dikerjakan Frontend 5). Sesuaikan nama file-nya.
-const INSTALL_PAGE = "installation.html";
-
 // Untuk menambah / mengubah distro, cukup edit daftar ini.
 // logo: taruh gambar di assets/distros/<slug>.png (kalau tidak ada, tampil huruf awal)
+// link: ganti placeholder "taro link ... disini" dengan URL panduan instalasi.
+// tags: [basis/keluarga, package manager, kegunaan]
 const distros = [
-  { slug: "debian", name: "Debian", desc: "Distro induk yang sangat stabil. Menjadi dasar bagi Ubuntu, Kali, dan banyak distro lain.", tags: ["Independen", "apt", "Server"] },
-  { slug: "ubuntu", name: "Ubuntu", desc: "Distro paling populer untuk pemula. Mudah dipakai, komunitas besar, dan rilis LTS yang stabil.", tags: ["Berbasis Debian", "apt", "Pemula"] },
-  { slug: "mint", name: "Linux Mint", desc: "Tampilan mirip Windows klasik, ramah pemula, dan siap pakai tanpa banyak pengaturan.", tags: ["Berbasis Ubuntu", "apt", "Pemula"] },
-  { slug: "kali", name: "Kali Linux", desc: "Distro khusus keamanan siber dan penetration testing dengan ratusan tools bawaan.", tags: ["Berbasis Debian", "apt", "Keamanan Siber"] },
-  { slug: "parrot", name: "Parrot OS", desc: "Alternatif Kali untuk keamanan siber, forensik, dan privasi dengan tampilan yang ringan.", tags: ["Berbasis Debian", "apt", "Keamanan Siber"] },
-  { slug: "mx", name: "MX Linux", desc: "Ringan, stabil, dan kaya alat bantu. Cocok untuk laptop lama.", tags: ["Berbasis Debian", "apt", "Ringan"] },
-  { slug: "popos", name: "Pop!_OS", desc: "Dibuat System76, nyaman untuk developer dan gamer, serta mendukung GPU NVIDIA dengan baik.", tags: ["Berbasis Ubuntu", "apt", "Developer"] },
-  { slug: "elementary", name: "elementary OS", desc: "Desktop yang bersih dan elegan, terinspirasi gaya macOS dengan fokus pada kesederhanaan.", tags: ["Berbasis Ubuntu", "apt", "Desktop"] },
-  { slug: "zorin", name: "Zorin OS", desc: "Dirancang agar pengguna Windows mudah berpindah, dengan tampilan modern dan rapi.", tags: ["Berbasis Ubuntu", "apt", "Pemula"] },
-  { slug: "fedora", name: "Fedora", desc: "Disponsori Red Hat dan sering memuat teknologi terbaru lebih dulu. Favorit developer.", tags: ["Keluarga RHEL", "dnf", "Developer"] },
-  { slug: "centos", name: "CentOS Stream", desc: "Distro bergaya enterprise yang menjadi tahap sebelum RHEL. CentOS Linux klasik sudah dihentikan.", tags: ["Keluarga RHEL", "dnf", "Server"] },
-  { slug: "rocky", name: "Rocky Linux", desc: "Pengganti CentOS Linux yang kompatibel dengan RHEL, ditujukan untuk server produksi.", tags: ["Keluarga RHEL", "dnf", "Server"] },
-  { slug: "almalinux", name: "AlmaLinux", desc: "Distro gratis yang kompatibel dengan RHEL dan didukung komunitas, cocok untuk server.", tags: ["Keluarga RHEL", "dnf", "Server"] },
-  { slug: "arch", name: "Arch Linux", desc: "Minimalis dan rolling release. Kamu menyusun sistem sendiri dari nol, cocok untuk belajar mendalam.", tags: ["Independen", "pacman", "Mahir"] },
-  { slug: "manjaro", name: "Manjaro", desc: "Rasa Arch yang lebih mudah dipasang, lengkap dengan installer grafis dan driver otomatis.", tags: ["Berbasis Arch", "pacman", "Menengah"] },
-  { slug: "garuda", name: "Garuda Linux", desc: "Fokus performa dan gaming.", tags: ["Berbasis Arch", "pacman", "Gaming"] },
-  { slug: "cachy", name: "CachyOS", desc: "Dioptimalkan untuk kecepatan.", tags: ["Berbasis Arch", "pacman", "Performa"] },
-  { slug: "alpine", name: "Alpine Linux	", desc: "Sangat ringan, populer untuk container Docker", tags: ["Independen", "apk", "Container"] },
-  { slug: "gentoo", name: "Gentoo", desc: "Paket dikompilasi dari source code sesuai kebutuhan, untuk kontrol dan optimasi maksimal.", tags: ["Independen", "portage", "Mahir"] },
-  { slug: "void", name: "Void Linux", desc: "Ringan, memakai sistem init runit.", tags: ["Independen", "xbps", "Mahir"] },
+  { slug: "debian", name: "Debian", desc: "Distro induk yang sangat stabil dan dibangun independen. Menjadi dasar bagi Ubuntu, Kali, dan banyak distro lain.", tags: ["Independen", "apt", "Server"], link: "https://www.debian.org/distrib/" },
+  { slug: "ubuntu", name: "Ubuntu", desc: "Distro paling populer untuk pemula. Mudah dipakai, komunitas besar, dan rilis LTS yang stabil.", tags: ["Berbasis Debian", "apt", "Pemula"], link: "https://ubuntu.com/download" },
+  { slug: "mint", name: "Linux Mint", desc: "Tampilan mirip Windows klasik, ramah pemula, dan siap pakai tanpa banyak pengaturan.", tags: ["Berbasis Ubuntu", "apt", "Pemula"], link: "https://linuxmint.com/download.php" },
+  { slug: "kali", name: "Kali Linux", desc: "Distro khusus keamanan siber dan penetration testing dengan ratusan tools bawaan.", tags: ["Berbasis Debian", "apt", "Keamanan Siber"], link: "https://www.kali.org/get-kali/" },
+  { slug: "parrot", name: "Parrot OS", desc: "Alternatif Kali untuk keamanan siber, forensik, dan privasi dengan tampilan yang ringan.", tags: ["Berbasis Debian", "apt", "Keamanan Siber"], link: "https://www.parrotsec.org/download/" },
+  { slug: "mx", name: "MX Linux", desc: "Ringan, stabil, dan kaya alat bantu. Cocok untuk laptop lama.", tags: ["Berbasis Debian", "apt", "Ringan"], link: "https://mxlinux.org/download-links/" },
+  { slug: "popos", name: "Pop!_OS", desc: "Dibuat System76, nyaman untuk developer dan gamer, serta mendukung GPU NVIDIA dengan baik.", tags: ["Berbasis Ubuntu", "apt", "Developer"], link: "https://pop.system76.com/" },
+  { slug: "elementary", name: "elementary OS", desc: "Desktop yang bersih dan elegan, terinspirasi gaya macOS dengan fokus pada kesederhanaan.", tags: ["Berbasis Ubuntu", "apt", "Desain"], link: "https://elementary.io/" },
+  { slug: "zorin", name: "Zorin OS", desc: "Dirancang agar pengguna Windows mudah berpindah, dengan tampilan modern dan rapi.", tags: ["Berbasis Ubuntu", "apt", "Pemula"], link: "https://zorin.com/os/download/" },
+  { slug: "fedora", name: "Fedora", desc: "Disponsori Red Hat dan sering memuat teknologi terbaru lebih dulu. Favorit developer.", tags: ["Keluarga Red Hat", "dnf", "Developer"], link: "https://fedoraproject.org/" },
+  { slug: "centos", name: "CentOS Stream", desc: "Distro bergaya enterprise yang menjadi tahap sebelum RHEL. CentOS Linux klasik sudah dihentikan.", tags: ["Keluarga Red Hat", "dnf", "Server"], link: "https://www.centos.org/download/" },
+  { slug: "rocky", name: "Rocky Linux", desc: "Pengganti CentOS Linux yang kompatibel dengan RHEL, ditujukan untuk server produksi.", tags: ["Keluarga RHEL", "dnf", "Server"], link: "https://rockylinux.org/download" },
+  { slug: "almalinux", name: "AlmaLinux", desc: "Distro gratis yang kompatibel dengan RHEL dan didukung komunitas, cocok untuk server.", tags: ["Keluarga RHEL", "dnf", "Server"], link: "https://almalinux.org/get-almalinux/" },
+  { slug: "arch", name: "Arch Linux", desc: "Minimalis dan rolling release. Kamu menyusun sistem sendiri dari nol, cocok untuk belajar mendalam.", tags: ["Independen", "pacman", "Mahir"], link: "https://archlinux.org/download/" },
+  { slug: "manjaro", name: "Manjaro", desc: "Rasa Arch yang lebih mudah dipasang, lengkap dengan installer grafis dan driver otomatis.", tags: ["Berbasis Arch", "pacman", "Menengah"], link: "https://manjaro.org/products/download/x86" },
+  { slug: "garuda", name: "Garuda Linux", desc: "Berbasis Arch dengan tampilan modern dan konfigurasi siap pakai untuk gaming. Performa tinggi tanpa setup yang rumit.", tags: ["Berbasis Arch", "pacman", "Gaming"], link: "https://garudalinux.org/editions" },
+  { slug: "cachy", name: "CachyOS", desc: "Arch yang dioptimalkan untuk kecepatan lewat kernel dan paket khusus, tetap dengan installer grafis yang mudah.", tags: ["Berbasis Arch", "pacman", "Performa"], link: "https://cachyos.org/download/" },
+  { slug: "alpine", name: "Alpine Linux", desc: "Sangat kecil, ringan, dan fokus pada keamanan. Jadi favorit untuk container Docker.", tags: ["Independen", "apk", "Container"], link: "https://www.alpinelinux.org/downloads/" },
+  { slug: "gentoo", name: "Gentoo", desc: "Paket dikompilasi dari source code sesuai kebutuhan, untuk kontrol dan optimasi maksimal.", tags: ["Independen", "portage", "Mahir"], link: "https://www.gentoo.org/downloads/" },
+  { slug: "void", name: "Void Linux", desc: "Independen, ringan, dan memakai sistem init runit. Cocok untuk yang ingin sistem sederhana dengan kontrol penuh.", tags: ["Independen", "xbps", "Mahir"], link: "https://voidlinux.org/download/" },
 ];
 
 const track = document.getElementById("carouselTrack");
@@ -52,10 +51,10 @@ function makeCard(d, isClone) {
   card.className = "distro-card";
   if (isClone) card.dataset.clone = "true";
 
-  const link = document.createElement("a");
+  // Pembungkus isi card. Sekarang <div> biasa (bukan link),
+  // jadi logo dan nama distro tidak lagi membuka halaman instalasi.
+  const link = document.createElement("div");
   link.className = "distro-link";
-  link.href = `${INSTALL_PAGE}#${d.slug}`;
-  link.setAttribute("aria-label", `Buka panduan instalasi ${d.name}`);
 
   const logo = document.createElement("div");
   logo.className = "distro-logo";
@@ -67,7 +66,6 @@ function makeCard(d, isClone) {
   img.onerror = () => img.remove();      // gambar belum ada → huruf tetap
   img.src = `assets/distros/${d.slug}.png`;
   img.alt = `Logo ${d.name}`;
-  img.onerror = () => img.remove(); // kalau gambar belum ada, huruf awal tampil
   logo.append(initial, img);
 
   const text = document.createElement("div");
@@ -85,9 +83,20 @@ function makeCard(d, isClone) {
     s.textContent = t;
     tags.appendChild(s);
   });
-  const cta = document.createElement("span");
+
+  // Hanya tulisan ini yang menjadi link ke panduan instalasi.
+  const cta = document.createElement("a");
   cta.className = "distro-cta";
+  cta.href = d.link;
+  cta.target = "_blank";
+  cta.rel = "noopener noreferrer";
+  cta.setAttribute("aria-label", `Buka panduan instalasi ${d.name}`);
   cta.textContent = "Lihat panduan instalasi →";
+  // Kalau card belum di tengah, klik hanya menggeser card (link tidak terbuka).
+  cta.addEventListener("click", (e) => {
+    if (cards.indexOf(card) !== pos) e.preventDefault();
+  });
+
   text.append(name, desc, tags, cta);
 
   link.append(logo, text);
@@ -97,7 +106,7 @@ function makeCard(d, isClone) {
   inner.appendChild(link);
   card.appendChild(inner);
 
-  // Klik card samping = geser ke card itu (bukan buka halaman)
+  // Klik card samping = geser ke card itu
   card.addEventListener("click", () => {
     const idx = cards.indexOf(card);
     if (idx !== pos) go(idx - pos);
@@ -124,7 +133,8 @@ function render(animate) {
   cards.forEach((c, i) => {
     c.classList.toggle("is-active", i === pos);
     c.setAttribute("aria-hidden", i === pos && !c.dataset.clone ? "false" : "true");
-    c.querySelector(".distro-link").tabIndex = i === pos ? 0 : -1;
+    // Hanya link di card aktif yang bisa difokus dengan keyboard (Tab)
+    c.querySelector(".distro-cta").tabIndex = i === pos ? 0 : -1;
   });
 
   const real = (((pos - CLONES) % N) + N) % N;
