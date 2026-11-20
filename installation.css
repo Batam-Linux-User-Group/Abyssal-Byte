@@ -1,0 +1,715 @@
+/* =========================================
+   INSTALLATION.CSS - Halaman Linux Installation
+   Daftar isi:
+    1. Alur di hero
+    2. Bantu pilih & kartu cara install
+    3. Checklist persiapan
+    4. Langkah instalasi
+    5. Tombol boot menu
+    6. Setelah install
+    7. FAQ
+    8. Responsif
+   ========================================= */
+
+/* ---------- 1. Alur di hero ---------- */
+
+.flow-preview {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Garis penghubung antar langkah */
+.flow-preview::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 23px;
+  width: 2px;
+  background: linear-gradient(var(--yellow), rgba(255, 204, 0, 0.15));
+}
+
+.flow-preview li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 16px 8px 0;
+  font-size: 14.5px;
+}
+
+.flow-preview span {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border-radius: 14px;
+  background: #141414;
+  border: 1px solid #3d3200;
+  color: var(--yellow);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.flow-preview li:last-child span {
+  background: var(--yellow);
+  color: #111;
+}
+
+/* ---------- 2. Bantu pilih & kartu cara install ---------- */
+
+.picker {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 18px 32px;
+  margin-bottom: 16px;
+}
+
+.picker-q {
+  display: grid;
+  gap: 10px;
+}
+
+.picker-q b {
+  font-size: 14px;
+}
+
+.picker .chip-row {
+  flex-wrap: wrap;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.picker-result {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed #3a3a3a;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #aaa;
+}
+
+.picker-result b {
+  color: var(--yellow);
+}
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.method {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.method.is-picked {
+  border-color: var(--yellow);
+  background:
+    radial-gradient(circle at 100% 0, rgba(255, 204, 0, 0.16), transparent 55%),
+    var(--surface);
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15), 0 15px 35px rgba(0, 0, 0, 0.45);
+  transform: translateY(-4px);
+}
+
+.method.is-picked::after {
+  content: "Rekomendasi";
+  position: absolute;
+  top: -11px;
+  right: 16px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--yellow);
+  color: #111;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.method-badge {
+  align-self: flex-start;
+  margin-bottom: 14px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.method-badge.is-safe {
+  background: rgba(94, 227, 122, 0.12);
+  color: #5ee37a;
+}
+
+.method-badge.is-mid {
+  background: rgba(255, 204, 0, 0.12);
+  color: var(--yellow);
+}
+
+.method-badge.is-risk {
+  background: rgba(229, 72, 77, 0.14);
+  color: #ff7b7e;
+}
+
+.method h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.method p {
+  flex: 1;
+  margin: 0 0 14px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.method ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.method li {
+  display: flex;
+  gap: 8px;
+}
+
+.method li::before {
+  flex: none;
+  width: 18px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.method li.pro::before {
+  content: "+";
+  color: #5ee37a;
+}
+
+.method li.con::before {
+  content: "−";
+  color: #ff7b7e;
+}
+
+.wsl-note {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  background: rgba(92, 182, 255, 0.06);
+  border: 1px solid rgba(92, 182, 255, 0.3);
+}
+
+.wsl-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border-radius: 12px;
+  background: rgba(92, 182, 255, 0.15);
+  color: #5cb6ff;
+}
+
+.wsl-note > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.wsl-note b {
+  font-size: 15px;
+}
+
+.wsl-note p {
+  margin: 4px 0 12px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.wsl-note .cmd-line {
+  max-width: 340px;
+}
+
+/* ---------- 3. Checklist persiapan ---------- */
+
+.prep-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.prep-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prep-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.prep-list label:hover {
+  border-color: rgba(255, 204, 0, 0.4);
+}
+
+.prep-list input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.prep-box {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  margin-top: 1px;
+  border-radius: 8px;
+  border: 2px solid #555;
+  transition: 0.2s;
+}
+
+.prep-list input:checked + .prep-box {
+  background: var(--yellow);
+  border-color: var(--yellow);
+}
+
+.prep-list input:checked + .prep-box::after {
+  content: "✓";
+  color: #111;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.prep-list input:focus-visible + .prep-box {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+.prep-list input:checked ~ .prep-text b {
+  color: #9a9a9a;
+  text-decoration: line-through;
+}
+
+.prep-list label:has(input:checked) {
+  background: rgba(255, 204, 0, 0.04);
+  border-color: rgba(255, 204, 0, 0.25);
+}
+
+.prep-text b {
+  display: block;
+  font-size: 14.5px;
+}
+
+.prep-text small {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.prep-status {
+  position: sticky;
+  top: calc(var(--topbar-h) + 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.prep-ring {
+  --p: 0;
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: conic-gradient(var(--yellow) calc(var(--p) * 1%), #2b2b2b 0);
+}
+
+.prep-ring::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: #141414;
+}
+
+.prep-ring span {
+  position: relative;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.prep-status b {
+  font-size: 18px;
+}
+
+.prep-status p {
+  margin: 6px 0 18px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.prep-status.is-ready .prep-ring span,
+.prep-status.is-ready b {
+  color: var(--yellow);
+}
+
+/* ---------- 4. Langkah instalasi ---------- */
+
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.step:hover {
+  border-color: rgba(255, 204, 0, 0.4);
+}
+
+.step-num {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--yellow), #ffb800);
+  color: #111;
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.step > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.step h3 {
+  margin: 2px 0 6px;
+  font-size: 16px;
+}
+
+.step p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #b5b5b5;
+}
+
+.step p + .cmd-line,
+.step p + p {
+  margin-top: 10px;
+}
+
+.step b {
+  color: #eee;
+}
+
+.step a {
+  color: var(--yellow);
+  text-decoration: underline;
+}
+
+.step code {
+  font-family: var(--mono);
+  font-size: 0.92em;
+  color: var(--yellow);
+}
+
+.step-warn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ff9b9d !important;
+  font-size: 12.5px !important;
+}
+
+.step-warn .icon {
+  width: 15px;
+  height: 15px;
+  color: #ff6b6b;
+}
+
+/* ---------- 5. Tombol boot menu ---------- */
+
+.boot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.boot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.boot:last-child {
+  background: rgba(255, 204, 0, 0.05);
+  border-color: rgba(255, 204, 0, 0.25);
+}
+
+.boot b {
+  font-size: 15px;
+}
+
+.boot span {
+  display: flex;
+  gap: 6px;
+}
+
+.boot kbd {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--yellow);
+  background: #1a1a1a;
+  border-color: #3d3200;
+  box-shadow: 0 2px 0 #3d3200;
+}
+
+.boot-note {
+  margin: 14px 0 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.boot-note b {
+  color: #ddd;
+}
+
+/* ---------- 6. Setelah install ---------- */
+
+.after-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.after {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.after-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--yellow-soft);
+  color: var(--yellow);
+}
+
+.after h3 {
+  margin: 0;
+  font-size: 15.5px;
+}
+
+.after p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.after p b {
+  color: #ddd;
+}
+
+.after .cmd-line {
+  margin-top: auto;
+  font-size: 12px;
+}
+
+/* ---------- 7. FAQ ---------- */
+
+.faq {
+  display: grid;
+  gap: 10px;
+}
+
+.faq details {
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.faq details[open] {
+  border-color: rgba(255, 204, 0, 0.3);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary .icon {
+  color: var(--yellow);
+  transition: transform 0.25s;
+}
+
+.faq details[open] summary .icon {
+  transform: rotate(180deg);
+}
+
+.faq details p {
+  margin: 0;
+  padding: 0 20px 18px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #b5b5b5;
+}
+
+.faq details a {
+  color: var(--yellow);
+  text-decoration: underline;
+}
+
+/* ---------- 8. Responsif ---------- */
+
+@media (max-width: 1200px) {
+  .method-grid,
+  .after-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .picker {
+    grid-template-columns: auto auto;
+  }
+
+  .picker-result {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 960px) {
+  .prep-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .prep-status {
+    position: static;
+  }
+
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .boot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flow-preview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flow-preview::before {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .picker {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .method-grid,
+  .after-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wsl-note {
+    flex-direction: column;
+  }
+
+  .flow-preview li {
+    font-size: 13px;
+  }
+
+  .flow-preview span {
+    width: 40px;
+    height: 40px;
+  }
+
+  .boot {
+    padding: 14px;
+  }
+}
+
+/* Perintah di kartu yang sempit boleh turun baris */
+.step .cmd-line code,
+.after .cmd-line code {
+  white-space: normal;
+  word-break: break-word;
+  color: #eee;
+}
