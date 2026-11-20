@@ -4,7 +4,7 @@
 
    Daftar isi:
     1. Animasi terminal mengetik (hero)
-    2. Garis progres baca + tombol kembali ke atas
+    2. Garis progres baca
     3. Animasi muncul saat di-scroll
     4. Angka berjalan (counter)
     5. Sub-navigasi yang mengikuti posisi scroll
@@ -12,9 +12,9 @@
     7. Timeline sejarah: filter era + garis kuning
     8. Tab karakteristik
     9. Simulator hak akses file (chmod)
-   10. Tombol salin perintah
+   10. (Tombol salin & kembali ke atas ada di script.js)
    11. Kuis
-   12. Pencarian di halaman
+   (Pencarian Ctrl + K ada di script.js karena dipakai semua halaman)
 
    Semua kode dibungkus (() => { ... })(); supaya nama variabel
    di sini tidak bentrok dengan variabel di script.js
@@ -90,22 +90,16 @@
   runTerminal();
 
   /* =====================================================
-     2. GARIS PROGRES BACA + TOMBOL KEMBALI KE ATAS
+     2. GARIS PROGRES BACA
      ===================================================== */
   const progressBar = $("#alProgress");
-  const toTopBtn = $("#alToTop");
 
   function updateProgress() {
     const doc = document.documentElement;
     const maxScroll = doc.scrollHeight - doc.clientHeight;
     const ratio = maxScroll > 0 ? doc.scrollTop / maxScroll : 0;
     progressBar.style.transform = `scaleX(${ratio})`;
-    toTopBtn.classList.toggle("is-show", doc.scrollTop > 600);
   }
-
-  toTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
-  });
 
   /* =====================================================
      3. ANIMASI MUNCUL SAAT DI-SCROLL
@@ -201,24 +195,24 @@
      ===================================================== */
   const layerData = [
     {
-      title: "Aplikasi & Pengguna",
-      desc: "Lapisan paling atas yang langsung kamu pakai: browser, editor kode, pemutar musik, game, dan tampilan desktop seperti GNOME atau KDE Plasma.",
-      chips: ["Firefox", "VS Code", "LibreOffice", "GNOME"],
+      title: "Aplikasi",
+      desc: "Yang langsung kamu pakai: browser, editor kode, game, dan desktop seperti GNOME.",
+      chips: ["Firefox", "VS Code", "GNOME"],
     },
     {
-      title: "Shell & Utilitas GNU",
-      desc: "Penerjemah perintah. Shell (misalnya Bash) menerima perintah yang kamu ketik, lalu meneruskannya ke kernel. Banyak perintah dasar seperti ls, cp, dan grep berasal dari proyek GNU.",
-      chips: ["bash", "zsh", "ls", "grep"],
+      title: "Shell & GNU",
+      desc: "Menerjemahkan perintah yang kamu ketik lalu meneruskannya ke kernel.",
+      chips: ["bash", "ls", "grep"],
     },
     {
       title: "Kernel Linux",
-      desc: "Jantung sistem. Kernel mengatur CPU, membagi memori, menjalankan driver perangkat, mengelola file system, dan menjaga agar program tidak saling ganggu.",
-      chips: ["scheduler", "driver", "ext4", "network stack"],
+      desc: "Jantung sistem: mengatur CPU, memori, driver, dan file system.",
+      chips: ["scheduler", "driver", "ext4"],
     },
     {
       title: "Hardware",
-      desc: "Perangkat fisik komputer. Aplikasi tidak boleh mengakses hardware secara langsung; semua permintaan harus lewat kernel (disebut system call).",
-      chips: ["CPU", "RAM", "SSD", "kartu jaringan"],
+      desc: "Perangkat fisik. Aplikasi hanya bisa mengaksesnya lewat kernel (system call).",
+      chips: ["CPU", "RAM", "SSD"],
     },
   ];
 
@@ -409,101 +403,45 @@
   updatePermission();
 
   /* =====================================================
-     10. TOMBOL SALIN PERINTAH
-     ===================================================== */
-  async function copyText(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch (error) {
-      // Cadangan untuk browser lama / saat dibuka langsung dari file
-      const area = el("textarea");
-      area.value = text;
-      area.style.position = "fixed";
-      area.style.opacity = "0";
-      document.body.appendChild(area);
-      area.select();
-      let ok = false;
-      try {
-        ok = document.execCommand("copy");
-      } catch (e) {
-        ok = false;
-      }
-      area.remove();
-      return ok;
-    }
-  }
-
-  $$(".al-copy").forEach((btn) => {
-    const icon = $("use", btn);
-    const originalLabel = btn.getAttribute("aria-label");
-
-    btn.addEventListener("click", async () => {
-      const ok = await copyText(btn.dataset.copy);
-      if (!ok) return;
-      btn.classList.add("is-copied");
-      btn.setAttribute("aria-label", "Perintah tersalin");
-      icon.setAttribute("href", "#i-check");
-      setTimeout(() => {
-        btn.classList.remove("is-copied");
-        btn.setAttribute("aria-label", originalLabel);
-        icon.setAttribute("href", "#i-copy");
-      }, 1500);
-    });
-  });
-
-  /* =====================================================
      11. KUIS
      answer = urutan jawaban benar (dimulai dari 0)
      ===================================================== */
   const quizData = [
     {
-      q: "Siapa yang pertama kali membuat kernel Linux?",
+      q: "Siapa pembuat kernel Linux?",
       options: ["Richard Stallman", "Linus Torvalds", "Bill Gates", "Andrew S. Tanenbaum"],
       answer: 1,
-      explain: "Linus Torvalds membuat kernel Linux pada 1991 saat kuliah di Universitas Helsinki. Stallman adalah pendiri proyek GNU, sedangkan Tanenbaum pembuat MINIX.",
+      explain: "Linus Torvalds membuatnya pada 1991. Stallman pendiri GNU, Tanenbaum pembuat MINIX.",
     },
     {
       q: "Bagian inti sistem operasi yang menghubungkan aplikasi dengan hardware disebut...",
-      options: ["Shell", "Kernel", "Distro", "Desktop environment"],
+      options: ["Shell", "Kernel", "Distro", "Desktop"],
       answer: 1,
-      explain: "Kernel adalah inti sistem operasi. Shell hanya penerjemah perintah, distro adalah paket lengkapnya, dan desktop environment adalah tampilan grafisnya.",
+      explain: "Kernel adalah inti sistem. Shell hanya penerjemah perintah, distro adalah paket lengkapnya.",
     },
     {
-      q: "Pada tahun berapa Linus pertama kali mengumumkan proyek Linux?",
-      options: ["1969", "1983", "1991", "2004"],
-      answer: 2,
-      explain: "Linus mengumumkannya pada 25 Agustus 1991 di newsgroup comp.os.minix. Tahun 1969 adalah lahirnya Unix, 1983 proyek GNU, dan 2004 rilis pertama Ubuntu.",
-    },
-    {
-      q: "Kernel Linux dirilis dengan lisensi...",
-      options: ["MIT License", "GNU GPL versi 2", "Freeware", "Shareware"],
+      q: "Kernel Linux memakai lisensi...",
+      options: ["MIT License", "GNU GPL v2", "Freeware", "Shareware"],
       answer: 1,
-      explain: "Sejak 1992 kernel Linux memakai GNU GPL versi 2, yang menjamin siapa pun boleh memakai, mengubah, dan membagikan kodenya.",
+      explain: "GNU GPL v2 menjamin Linux bebas dipakai, diubah, dan dibagikan.",
     },
     {
-      q: "Karakteristik Linux yang membuat Tugas.txt dan tugas.txt dianggap file berbeda adalah...",
+      q: "Tugas.txt dan tugas.txt dianggap file berbeda karena Linux bersifat...",
       options: ["Multiuser", "Portabel", "Case-sensitive", "Multitasking"],
       answer: 2,
-      explain: "Linux bersifat case-sensitive, artinya huruf besar dan huruf kecil dianggap berbeda.",
+      explain: "Case-sensitive artinya huruf besar dan kecil dibedakan.",
     },
     {
-      q: "Izin file -rwxr-xr-- jika ditulis dalam angka (oktal) adalah...",
+      q: "Izin -rwxr-xr-- jika ditulis dalam angka adalah...",
       options: ["755", "754", "644", "777"],
       answer: 1,
-      explain: "rwx = 4+2+1 = 7, r-x = 4+0+1 = 5, r-- = 4+0+0 = 4. Jadi hasilnya 754. Coba buktikan di simulator hak akses!",
+      explain: "rwx = 4+2+1 = 7, r-x = 4+1 = 5, r-- = 4. Hasilnya 754.",
     },
     {
-      q: "Apa nama maskot penguin Linux?",
-      options: ["Tux", "Gnu", "Beastie", "Duke"],
-      answer: 0,
-      explain: "Tux digambar oleh Larry Ewing pada 1996. Gnu adalah maskot proyek GNU, Beastie maskot BSD, dan Duke maskot Java.",
-    },
-    {
-      q: "Manakah yang BUKAN distribusi Linux?",
+      q: "Mana yang BUKAN distro Linux?",
       options: ["Ubuntu", "Fedora", "FreeBSD", "Debian"],
       answer: 2,
-      explain: "FreeBSD memang sistem operasi mirip Unix, tapi kernelnya bukan Linux. Ubuntu, Fedora, dan Debian semuanya distro Linux.",
+      explain: "FreeBSD memang mirip Unix, tapi kernelnya bukan Linux.",
     },
   ];
 
@@ -601,10 +539,10 @@
     if (quizScore === total) {
       title = "Sempurna!";
       message = "Kamu sudah paham banget soal Linux. Siap presentasi!";
-    } else if (quizScore >= 6) {
+    } else if (quizScore >= total - 2) {
       title = "Mantap!";
       message = "Tinggal sedikit lagi untuk jadi master Linux.";
-    } else if (quizScore >= 4) {
+    } else if (quizScore >= Math.ceil(total / 2)) {
       title = "Lumayan!";
       message = "Coba baca ulang bagian yang masih ragu, lalu ulangi kuisnya.";
     }
@@ -652,71 +590,6 @@
   }
 
   renderQuestion();
-
-  /* =====================================================
-     12. PENCARIAN DI HALAMAN
-     Memakai kolom search di topbar (Ctrl + K dari script.js).
-     Kartu yang tidak cocok dibuat redup, Enter = lompat ke hasil pertama.
-     ===================================================== */
-  const searchInput = $("#searchInput");
-  const searchables = $$(".al-searchable");
-  const searchCount = el("span", "al-search-count");
-  searchCount.setAttribute("aria-live", "polite");
-  searchInput.insertAdjacentElement("afterend", searchCount);
-  let searchMatches = [];
-
-  // Huruf kecil semua supaya "LINUX" dan "linux" dianggap sama
-  const normalize = (text) => text.toLowerCase().replace(/\s+/g, " ").trim();
-
-  // Untuk tombol tab, teks panelnya ikut dicari
-  function searchText(node) {
-    if (node.classList.contains("al-tab")) {
-      const panel = document.getElementById(node.getAttribute("aria-controls"));
-      return normalize(node.textContent + " " + panel.textContent);
-    }
-    return normalize(node.textContent);
-  }
-
-  function clearSearch() {
-    searchMatches = [];
-    searchables.forEach((node) => node.classList.remove("al-search-dim"));
-    searchCount.textContent = "";
-  }
-
-  searchInput.addEventListener("input", () => {
-    const keyword = normalize(searchInput.value);
-    if (keyword.length < 2) {
-      clearSearch();
-      return;
-    }
-    if (activeFilter !== "all") applyFilter("all"); // tampilkan semua event dulu
-
-    searchMatches = searchables.filter((node) => searchText(node).includes(keyword));
-    searchables.forEach((node) => node.classList.toggle("al-search-dim", !searchMatches.includes(node)));
-    searchCount.textContent = `${searchMatches.length} hasil`;
-  });
-
-  searchInput.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      searchInput.value = "";
-      // Picu event "input" supaya script.js & pencarian ini sama-sama direset
-      searchInput.dispatchEvent(new Event("input"));
-      return;
-    }
-    if (event.key !== "Enter" || searchMatches.length === 0) return;
-    event.preventDefault();
-
-    let target = searchMatches[0];
-    if (target.classList.contains("al-tab")) {
-      selectTab(tabs.indexOf(target), false);
-      target = tabPanels[tabs.indexOf(target)];
-    }
-    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
-    const flashTarget = target.querySelector(".al-event-card") || target;
-    flashTarget.classList.remove("al-search-flash");
-    void flashTarget.offsetWidth;
-    flashTarget.classList.add("al-search-flash");
-  });
 
   /* =====================================================
      Semua fungsi yang bergantung pada posisi scroll

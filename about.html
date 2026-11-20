@@ -3,121 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Linux | LINUX_ABYSSAL_BYTE</title>
-  <meta name="description" content="Kenalan dengan Linux: pengertian, sejarah, fungsi, karakteristik, dan keunggulan sistem operasi open source." />
+  <title>About Linux | Abyssal Byte</title>
+  <meta name="description" content="Kenalan dengan Linux: pengertian, sejarah, fungsi, karakteristik, dan keunggulan." />
+  <link rel="icon" href="assets/linux.jpg" type="image/jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="about.css" />
-  <!-- Menandai bahwa JavaScript aktif, supaya animasi & tab hanya disembunyikan kalau JS jalan -->
-  <script>document.documentElement.classList.add("al-js");</script>
+  <!-- Menandai JavaScript aktif + mengingat sidebar yang disembunyikan (sebelum halaman tampil, supaya tidak berkedip) -->
+  <script>document.documentElement.classList.add("js", "al-js"); try { if (localStorage.getItem("abyssal-nav-hidden") === "1") document.documentElement.classList.add("nav-hidden"); if (localStorage.getItem("abyssal-nav-dashboard") === "1") document.documentElement.classList.add("nav-dash-open"); } catch (e) {}</script>
 </head>
 <body>
-  <!-- =========================================================
-       ABOUT.HTML - Frontend Developer 2
-       Halaman About Linux: Pengertian, Sejarah, Fungsi,
-       Karakteristik, Keunggulan (+ kuis).
-       Semua class khusus halaman ini diawali "al-" (About Linux)
-       supaya tidak bentrok dengan style.css.
-       ========================================================= -->
-
-  <!-- Kumpulan ikon SVG. Dipanggil dengan <svg><use href="#i-nama"/></svg> -->
+  <!-- Kumpulan ikon. Dipanggil dengan <svg class="icon"><use href="#i-nama"/></svg> -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+      <symbol id="i-terminal" viewBox="0 0 24 24"><path d="M4 17l6-6-6-6M12 19h8"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+      <symbol id="i-repo" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="8" r="3"/><path d="M6 9v6M18 11a7 7 0 0 1-7 7H9"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+      <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+      <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
+      <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></symbol>
+      <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></symbol>
       <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
       <symbol id="i-memory" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="1.5"/><path d="M6 7v10M10 7v10M14 7v10M18 7v10M4 17v3M20 17v3"/></symbol>
       <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
       <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
       <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
       <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></symbol>
-      <symbol id="i-terminal" viewBox="0 0 24 24"><path d="M4 17l6-6-6-6M12 19h8"/></symbol>
       <symbol id="i-apps" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
       <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
-      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
       <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
       <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
       <symbol id="i-feather" viewBox="0 0 24 24"><path d="M20.2 12.2a6 6 0 0 0-8.5-8.5L5 10.5V19h8.5z"/><path d="M16 8L2 22M17.5 15H9"/></symbol>
       <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
-      <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
       <symbol id="i-package" viewBox="0 0 24 24"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></symbol>
-      <symbol id="i-code" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
       <symbol id="i-server" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></symbol>
       <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
       <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
       <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></symbol>
       <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 12.6a11 11 0 0 1 14 0M1.4 9a16 16 0 0 1 21.2 0M8.5 16.1a6 6 0 0 1 7 0M12 20h.01"/></symbol>
-      <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></symbol>
       <symbol id="i-gamepad" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/></symbol>
-      <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 16V11l2-5h10l2 5v5z"/><path d="M3 11h18"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></symbol>
       <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-4A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></symbol>
-      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
-      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
-      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
-      <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
-      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
-      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></symbol>
-      <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
-      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+      <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 16V11l2-5h10l2 5v5z"/><path d="M3 11h18"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></symbol>
+      <symbol id="i-usb" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="7" rx="1"/><path d="M5 9h14v8a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5z"/><path d="M10 5h.01M14 5h.01"/></symbol>
+      <symbol id="i-disk" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.7-4 3-9 3s-9-1.3-9-3M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/></symbol>
+      <symbol id="i-power" viewBox="0 0 24 24"><path d="M18.4 6.6a9 9 0 1 1-12.8 0M12 2v10"/></symbol>
       <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
     </defs>
   </svg>
 
   <!-- Garis progres baca di paling atas layar -->
   <div class="al-progress" id="alProgress" aria-hidden="true"></div>
 
-  <!-- ========== SIDEBAR (sama dengan index.html) ========== -->
-  <aside class="sidebar" id="sidebar">
+  <!-- ========== SIDEBAR (sama di semua halaman) ========== -->
+  <aside class="sidebar" id="sidebar" aria-label="Menu utama">
     <a class="brand" href="index.html">
       <img src="assets/linux.jpg" alt="Logo penguin Linux" />
-      <span class="logo-text"><b>LI</b><strong>NUX</strong><sup>®</sup></span>
+      <span class="brand-text"><b>LI<em>NUX</em></b><small>by Abyssal Byte</small></span>
     </a>
 
+    <p class="nav-label">Menu</p>
     <nav class="nav-menu">
-      <a class="nav-link" href="index.html"><span>⌂</span>Dashboard</a>
-      <a class="nav-link active" href="about.html" aria-current="page"><span>ⓘ</span>About Linux</a>
-      <a class="nav-link" href="#sejarah"><span>◷</span>Sejarah Linux</a>
-      <a class="nav-link" href="index.html#team"><span>♟</span>Our Team</a>
-      <a class="nav-link" href="index.html#distros"><span>✥</span>Distributions</a>
-      <a class="nav-link" href="index.html#tutorials"><span>▣</span>Tutorials</a>
-      <a class="nav-link" href="index.html#docs"><span>▤</span>Documentation</a>
-      <a class="nav-link" href="index.html#community"><span>♧</span>Community</a>
+      <!-- Home + submenu. Klik tulisan = buka halaman Home, klik panah = buka/tutup submenu -->
+      <div class="nav-group">
+        <div class="nav-row">
+          <a class="nav-link nav-parent" href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Home</a>
+          <button class="nav-arrow" id="navDashArrow" type="button" aria-expanded="false" aria-controls="navDashSub" aria-label="Buka submenu Home">
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+          </button>
+        </div>
+        <div class="nav-sub" id="navDashSub">
+          <div class="nav-sub-inner">
+          <a class="nav-sublink" href="index.html#distros">Distributions</a>
+          <a class="nav-sublink" href="index.html#team">Our Team</a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="about.html"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>About Linux</a>
+      <a class="nav-link" href="commands.html"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg>Commands</a>
+      <a class="nav-link" href="installation.html"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Installation</a>
     </nav>
 
-    <div class="sidebar-bottom">
-      <a class="nav-link" href="index.html#settings"><span>⚙</span>Settings</a>
-      <a class="nav-link" href="index.html#help"><span>?</span>Help</a>
-      <div class="sidebar-note"><span class="terminal-mark">›_</span><br>Open Source.<br>Endless Possibilities.</div>
-    </div>
+    <div class="sidebar-foot"><b>Kelompok 3</b><br>Abyssal Byte · Learn, Share, Grow</div>
   </aside>
 
   <main class="main-content al-page" id="top">
-    <!-- ========== TOPBAR (sama dengan index.html) ========== -->
+    <!-- ========== TOPBAR (sama di semua halaman) ========== -->
     <header class="topbar">
-      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
-      <label class="search-box">
-        <span>⌕</span>
-        <input id="searchInput" type="search" placeholder="Cari materi di halaman ini..." />
-        <kbd>Ctrl + K</kbd>
-      </label>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Tampilkan/sembunyikan menu" title="Tampilkan/sembunyikan menu" aria-controls="sidebar">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+      <a class="topbar-brand" href="index.html" aria-label="Ke halaman Home"><img src="assets/linux.jpg" alt="" /><b>LI<em>NUX</em></b></a>
+      <div class="topbar-title">Abyssal Byte <span>/</span> <b>About Linux</b></div>
+      <button class="search-trigger" type="button" data-search-open aria-label="Cari (Ctrl + K)">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <span>Cari materi, perintah, atau distro...</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+      <a class="topbar-icon" href="https://github.com/Batam-Linux-User-Group/Abyssal-Byte" target="_blank" rel="noopener" aria-label="Lihat repository di GitHub" title="Repository GitHub">
+        <svg class="icon" aria-hidden="true"><use href="#i-repo"/></svg>
+      </a>
     </header>
 
     <!-- ========== HERO ========== -->
     <section class="al-hero" aria-labelledby="alTitle">
       <div class="al-hero-copy">
-        <nav class="al-breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html">Dashboard</a><span>/</span><b>About Linux</b>
-        </nav>
+        <nav class="al-breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><b>About Linux</b></nav>
         <p class="eyebrow al-eyebrow">ABOUT LINUX</p>
-        <h1 id="alTitle">Kenalan Lebih Dekat dengan <em>Linux</em></h1>
-        <p class="al-hero-sub">Sistem operasi gratis dan open source yang awalnya cuma proyek hobi seorang mahasiswa, lalu tumbuh jadi fondasi internet, smartphone, cloud, sampai superkomputer.</p>
+        <h1 id="alTitle">Kenalan dengan <em>Linux</em></h1>
+        <p class="al-hero-sub">Berawal dari proyek hobi seorang mahasiswa, kini jadi fondasi internet, Android, dan superkomputer.</p>
         <div class="al-hero-actions">
           <a class="primary-button" href="#pengertian">Mulai Membaca <span>↓</span></a>
           <a class="al-ghost-btn" href="#kuis">Langsung ke Kuis</a>
         </div>
       </div>
 
-      <div class="al-terminal" role="img" aria-label="Animasi terminal Linux yang memperkenalkan Linux">
+      <div class="al-terminal" role="img" aria-label="Animasi terminal Linux">
         <div class="al-terminal-bar"><i></i><i></i><i></i><span>abyssal@byte: ~</span></div>
         <!-- Isi ini akan diketik ulang oleh about.js (animasi mengetik) -->
         <div class="al-terminal-body" id="alTerminal">
@@ -131,22 +150,10 @@
 
     <!-- ========== ANGKA PENTING ========== -->
     <section class="al-stats" aria-label="Angka penting tentang Linux">
-      <div class="al-stat al-reveal">
-        <strong data-count="1991" data-from="1950">1991</strong>
-        <span>Tahun kernel Linux pertama kali diumumkan</span>
-      </div>
-      <div class="al-stat al-reveal">
-        <strong data-count="100" data-suffix="%">100%</strong>
-        <span>Superkomputer di daftar TOP500 memakai Linux</span>
-      </div>
-      <div class="al-stat al-reveal">
-        <strong data-count="40" data-suffix=" Jt+">40 Jt+</strong>
-        <span>Baris kode di source kernel Linux</span>
-      </div>
-      <div class="al-stat al-reveal">
-        <strong>GPLv2</strong>
-        <span>Lisensi bebas: boleh dipakai, diubah, dan dibagikan</span>
-      </div>
+      <div class="al-stat al-reveal"><strong data-count="1991" data-from="1950">1991</strong><span>Kernel Linux diumumkan</span></div>
+      <div class="al-stat al-reveal"><strong data-count="100" data-suffix="%">100%</strong><span>Superkomputer TOP500 pakai Linux</span></div>
+      <div class="al-stat al-reveal"><strong data-count="40" data-suffix=" Jt+">40 Jt+</strong><span>Baris kode di source kernel</span></div>
+      <div class="al-stat al-reveal"><strong>GPLv2</strong><span>Lisensi bebas &amp; terbuka</span></div>
     </section>
 
     <!-- ========== SUB-NAVIGASI (menempel saat di-scroll) ========== -->
@@ -168,75 +175,51 @@
         <div>
           <p class="eyebrow al-eyebrow">PENGERTIAN</p>
           <h2 id="h-pengertian">Apa Itu Linux?</h2>
-          <p>Sebelum lanjut, kita samakan dulu: sebenarnya Linux itu apa, dan kenapa ada yang menyebutnya "GNU/Linux"?</p>
+          <p>Singkatnya: Linux adalah inti dari sebuah sistem operasi.</p>
         </div>
       </header>
 
       <div class="al-intro-grid">
         <article class="al-card al-reveal">
-          <p class="al-lead">Linux adalah <b>kernel</b> sistem operasi yang bersifat <b>open source</b>, pertama kali dibuat oleh <b>Linus Torvalds</b> pada tahun 1991.</p>
-          <p class="al-text"><b>Kernel</b> adalah inti dari sistem operasi, yaitu bagian yang menghubungkan software (aplikasi) dengan hardware (CPU, RAM, disk, dan perangkat lain). Tanpa kernel, aplikasi tidak bisa "ngobrol" dengan perangkat keras.</p>
-          <p class="al-text">Dalam percakapan sehari-hari, kata "Linux" biasanya dipakai untuk menyebut <b>sistem operasi lengkap</b>: kernel Linux ditambah tools dari proyek GNU dan aplikasi lainnya. Karena itu ada juga yang menyebutnya <b>GNU/Linux</b>. Paket lengkap yang siap di-install disebut <b>distribusi</b> atau <b>distro</b>, contohnya Ubuntu, Debian, Fedora, dan Kali Linux.</p>
-
+          <p class="al-lead">Linux adalah <b>kernel</b> sistem operasi <b>open source</b> yang dibuat <b>Linus Torvalds</b> pada 1991.</p>
+          <p class="al-text">Kernel menjembatani aplikasi dengan hardware. Digabung dengan tools GNU dan aplikasi lain, jadilah sistem operasi utuh yang disebut <b>distro</b>, misalnya Ubuntu, Fedora, atau Kali Linux.</p>
+          <dl class="al-deflist">
+            <div><dt>kernel</dt><dd>Inti sistem yang mengatur CPU, memori, dan perangkat.</dd></div>
+            <div><dt>open source</dt><dd>Kode terbuka: boleh dilihat, diubah, dan dibagikan (GPL v2).</dd></div>
+            <div><dt>distro</dt><dd>Paket siap pakai: kernel + tools + desktop + aplikasi.</dd></div>
+          </dl>
           <div class="al-analogy">
             <svg class="al-svg" aria-hidden="true"><use href="#i-car"/></svg>
             <div>
               <b>Analogi gampangnya</b>
-              <p>Kernel Linux itu ibarat <em>mesin mobil</em>. Distro seperti Ubuntu atau Fedora adalah <em>mobil utuhnya</em>: mesinnya sama, tapi bodi, interior, dan fiturnya beda-beda tergantung "pabrikannya".</p>
+              <p>Kernel itu <em>mesin</em>, distro itu <em>mobilnya</em>. Mesinnya sama, model dan fiturnya beda-beda.</p>
             </div>
           </div>
         </article>
 
-        <!-- Diagram lapisan: diklik untuk ganti penjelasan (lihat about.js bagian 6) -->
+        <!-- Diagram lapisan: diklik untuk ganti penjelasan (about.js bagian 6) -->
         <article class="al-card al-layers-card al-reveal">
           <h3 class="al-card-title"><svg class="al-svg" aria-hidden="true"><use href="#i-layers"/></svg>Lapisan Sistem Linux</h3>
-          <p class="al-hint">Klik tiap lapisan untuk melihat penjelasannya.</p>
-
+          <p class="al-hint">Klik tiap lapisan.</p>
           <div class="al-layers">
-            <button class="al-layer" type="button" data-layer="0" aria-pressed="false">Aplikasi &amp; Pengguna <small>paling atas</small></button>
-            <button class="al-layer" type="button" data-layer="1" aria-pressed="false">Shell &amp; Utilitas GNU <small>penerjemah</small></button>
+            <button class="al-layer" type="button" data-layer="0" aria-pressed="false">Aplikasi <small>yang kamu pakai</small></button>
+            <button class="al-layer" type="button" data-layer="1" aria-pressed="false">Shell &amp; GNU <small>penerjemah</small></button>
             <button class="al-layer is-active" type="button" data-layer="2" aria-pressed="true">Kernel Linux <small>inti sistem</small></button>
             <button class="al-layer" type="button" data-layer="3" aria-pressed="false">Hardware <small>perangkat fisik</small></button>
           </div>
-
           <div class="al-layer-detail" id="alLayerDetail" aria-live="polite">
             <h4>Kernel Linux</h4>
-            <p>Jantung sistem. Kernel mengatur CPU, membagi memori, menjalankan driver perangkat, mengelola file system, dan menjaga agar program tidak saling ganggu.</p>
-            <div class="al-chips"><span>scheduler</span><span>driver</span><span>ext4</span><span>network stack</span></div>
+            <p>Jantung sistem: mengatur CPU, memori, driver, dan file system.</p>
+            <div class="al-chips"><span>scheduler</span><span>driver</span><span>ext4</span></div>
           </div>
         </article>
       </div>
 
-      <div class="al-terms">
-        <article class="al-card al-term al-reveal al-searchable">
-          <span class="al-term-word">kernel</span>
-          <h3>Inti Sistem Operasi</h3>
-          <p>Program pertama yang berjalan saat komputer menyala dan terus aktif untuk mengatur semua sumber daya komputer.</p>
-        </article>
-        <article class="al-card al-term al-reveal al-searchable">
-          <span class="al-term-word">open source</span>
-          <h3>Kode Sumber Terbuka</h3>
-          <p>Siapa saja boleh melihat, mempelajari, mengubah, dan membagikan ulang kodenya sesuai aturan lisensi (untuk Linux: GNU GPL v2).</p>
-        </article>
-        <article class="al-card al-term al-reveal al-searchable">
-          <span class="al-term-word">distro</span>
-          <h3>Distribusi Linux</h3>
-          <p>Paket siap pakai berisi kernel Linux, tools GNU, desktop, dan aplikasi. Contoh: Ubuntu, Debian, Fedora, Arch, Kali Linux.</p>
-        </article>
-      </div>
-
-      <div class="al-split">
-        <figure class="al-card al-figure al-reveal">
-          <img src="assets/code.png" alt="Contoh kode modul kernel Linux sederhana yang ditulis dengan bahasa C" loading="lazy" />
-          <figcaption>Contoh modul kernel sederhana. Kernel Linux sebagian besar ditulis dengan <b>bahasa C</b>, dan sejak 2022 juga mulai menerima kode <b>Rust</b>.</figcaption>
-        </figure>
-        <article class="al-card al-funfact al-reveal al-searchable">
-          <span class="al-badge"><svg class="al-svg" aria-hidden="true"><use href="#i-bulb"/></svg>FUN FACT</span>
-          <h3>Hampir Bernama "Freax"</h3>
-          <p>Linus awalnya ingin menamai proyeknya <b>Freax</b> (gabungan <i>free</i>, <i>freak</i>, dan <i>x</i> dari Unix). Tapi Ari Lemmke, pengelola server FTP tempat kodenya diunggah, memberi nama folder <code>linux</code>. Nama itulah yang akhirnya dipakai sampai sekarang.</p>
-          <p>Maskotnya, penguin <b>Tux</b>, digambar oleh Larry Ewing pada 1996. Konon Linus pernah digigit penguin saat berkunjung ke kebun binatang di Australia.</p>
-        </article>
-      </div>
+      <article class="al-card al-funfact al-reveal">
+        <span class="al-badge"><svg class="al-svg" aria-hidden="true"><use href="#i-bulb"/></svg>FUN FACT</span>
+        <h3>Hampir Bernama "Freax"</h3>
+        <p>Linus menamai proyeknya <b>Freax</b>, tapi Ari Lemmke, admin server FTP tempat kodenya diunggah, memberi nama folder <code>linux</code>, dan nama itulah yang melekat. Maskotnya, penguin <b>Tux</b>, digambar Larry Ewing pada 1996.</p>
+      </article>
     </section>
 
     <!-- =====================================================
@@ -247,194 +230,44 @@
         <span class="al-num" aria-hidden="true">02</span>
         <div>
           <p class="eyebrow al-eyebrow">SEJARAH</p>
-          <h2 id="h-sejarah">Perjalanan Linux dari Masa ke Masa</h2>
-          <p>Linux tidak muncul tiba-tiba. Akarnya ada di Unix tahun 1969, lalu tumbuh berkat gerakan perangkat lunak bebas dan kolaborasi ribuan orang di internet.</p>
+          <h2 id="h-sejarah">Perjalanan Linux</h2>
+          <p>Dari Unix 1969 sampai era Linux 7. Pilih era untuk menyaring.</p>
         </div>
       </header>
 
-      <!-- Tombol filter era (lihat about.js bagian 7) -->
+      <!-- Tombol filter era (about.js bagian 7) -->
       <div class="al-filter al-reveal" role="group" aria-label="Filter era sejarah">
         <button type="button" class="is-active" data-filter="all" aria-pressed="true">Semua</button>
-        <button type="button" data-filter="akar" aria-pressed="false">Akar (1969–1990)</button>
-        <button type="button" data-filter="lahir" aria-pressed="false">Kelahiran (1991–1999)</button>
-        <button type="button" data-filter="tumbuh" aria-pressed="false">Berkembang (2000–2015)</button>
-        <button type="button" data-filter="modern" aria-pressed="false">Modern (2016–sekarang)</button>
+        <button type="button" data-filter="akar" aria-pressed="false">Akar</button>
+        <button type="button" data-filter="lahir" aria-pressed="false">Kelahiran</button>
+        <button type="button" data-filter="tumbuh" aria-pressed="false">Berkembang</button>
+        <button type="button" data-filter="modern" aria-pressed="false">Modern</button>
       </div>
 
       <div class="al-timeline" id="alTimeline">
         <div class="al-timeline-fill" id="alTimelineFill" aria-hidden="true"></div>
 
-        <article class="al-event al-searchable is-first" data-era="akar" data-side="left">
-          <div class="al-event-card al-reveal">
-            <time>1969</time><span class="al-era">Akar</span>
-            <h3>Unix lahir di Bell Labs</h3>
-            <p>Ken Thompson dan Dennis Ritchie membuat Unix di Bell Labs (AT&amp;T). Konsep Unix seperti shell, sistem file hierarki, dan multiuser kelak jadi "cetak biru" Linux.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="akar" data-side="right">
-          <div class="al-event-card al-reveal">
-            <time>1983</time><span class="al-era">Akar</span>
-            <h3>Richard Stallman memulai proyek GNU</h3>
-            <p>Tujuannya membuat sistem operasi mirip Unix yang sepenuhnya bebas. Tools GNU seperti compiler GCC dan shell Bash kelak dipakai bersama kernel Linux.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="akar" data-side="left">
-          <div class="al-event-card al-reveal">
-            <time>1987</time><span class="al-era">Akar</span>
-            <h3>MINIX dirilis untuk belajar</h3>
-            <p>Andrew S. Tanenbaum membuat MINIX, sistem operasi mini mirip Unix untuk mengajar mahasiswa. Linus Torvalds memakai MINIX sebelum membuat Linux.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable is-highlight" data-era="lahir" data-side="right">
-          <div class="al-event-card al-reveal">
-            <time>25 Agu 1991</time><span class="al-era">Kelahiran</span>
-            <h3>Linus mengumumkan proyek "hobi"-nya</h3>
-            <p>Linus Torvalds, mahasiswa Universitas Helsinki berusia 21 tahun, menulis di newsgroup <code>comp.os.minix</code> bahwa ia sedang membuat sistem operasi gratis, "just a hobby".</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="lahir" data-side="left">
-          <div class="al-event-card al-reveal">
-            <time>17 Sep 1991</time><span class="al-era">Kelahiran</span>
-            <h3>Linux 0.01 dirilis</h3>
-            <p>Versi pertama kernel Linux diunggah ke server FTP. Ukurannya baru sekitar 10.000 baris kode, sangat kecil dibanding sekarang.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="lahir" data-side="right">
-          <div class="al-event-card al-reveal">
-            <time>1992</time><span class="al-era">Kelahiran</span>
-            <h3>Memakai lisensi GNU GPL</h3>
-            <p>Linux dirilis ulang dengan lisensi GNU GPL. Sejak itu kernel Linux dan tools GNU bisa digabung menjadi sistem operasi lengkap yang bebas dipakai, diubah, dan dibagikan.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="lahir" data-side="left">
-          <div class="al-event-card al-reveal">
-            <time>1993</time><span class="al-era">Kelahiran</span>
-            <h3>Distro pertama bermunculan</h3>
-            <p>Slackware dan Debian lahir di tahun yang sama. Debian sampai sekarang jadi "induk" bagi Ubuntu, Kali Linux, dan banyak distro lain.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable is-highlight" data-era="lahir" data-side="right">
-          <div class="al-event-card al-reveal">
-            <time>14 Mar 1994</time><span class="al-era">Kelahiran</span>
-            <h3>Linux 1.0 resmi dirilis</h3>
-            <p>Kernel versi 1.0 dianggap cukup stabil untuk dipakai sehari-hari dan sudah mendukung jaringan komputer.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="lahir" data-side="left">
-          <div class="al-event-card al-reveal">
-            <time>1996</time><span class="al-era">Kelahiran</span>
-            <h3>Tux jadi maskot &amp; Linux 2.0 rilis</h3>
-            <p>Penguin Tux digambar oleh Larry Ewing. Di tahun yang sama Linux 2.0 rilis dan mulai mendukung komputer dengan banyak prosesor (SMP).</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="tumbuh" data-side="right">
-          <div class="al-event-card al-reveal">
-            <time>2004</time><span class="al-era">Berkembang</span>
-            <h3>Ubuntu hadir untuk semua orang</h3>
-            <p>Ubuntu 4.10 rilis dengan misi membuat Linux mudah dipakai pemula. Sampai sekarang Ubuntu jadi salah satu distro paling populer.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="tumbuh" data-side="left">
-          <div class="al-event-card al-reveal">
-            <time>2005</time><span class="al-era">Berkembang</span>
-            <h3>Linus menciptakan Git</h3>
-            <p>Butuh alat baru untuk mengelola kode kernel, Linus membuat Git. Sekarang Git dipakai jutaan developer di seluruh dunia, termasuk lewat GitHub yang dipakai kelompok kami.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="tumbuh" data-side="right">
-          <div class="al-event-card al-reveal">
-            <time>2007</time><span class="al-era">Berkembang</span>
-            <h3>Linux Foundation dibentuk</h3>
-            <p>Organisasi nirlaba yang menaungi pengembangan Linux. Lewat yayasan ini Linus bisa bekerja penuh waktu mengurus kernel.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable is-highlight" data-era="tumbuh" data-side="left">
-          <div class="al-event-card al-reveal">
-            <time>2008</time><span class="al-era">Berkembang</span>
-            <h3>Android: Linux masuk ke saku</h3>
-            <p>Ponsel Android pertama (HTC Dream / T-Mobile G1) rilis. Android dibangun di atas kernel Linux dan kini dipakai miliaran orang.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="tumbuh" data-side="right">
-          <div class="al-event-card al-reveal">
-            <time>2011</time><span class="al-era">Berkembang</span>
-            <h3>Linux 3.0 &amp; ulang tahun ke-20</h3>
-            <p>Linux merayakan usia 20 tahun dengan merilis versi 3.0. Saat itu Linux sudah menguasai server, superkomputer, dan smartphone.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable is-highlight" data-era="modern" data-side="left">
-          <div class="al-event-card al-reveal">
-            <time>Nov 2017</time><span class="al-era">Modern</span>
-            <h3>Menguasai 100% superkomputer</h3>
-            <p>Untuk pertama kalinya seluruh 500 superkomputer tercepat di dunia (daftar TOP500) memakai Linux, dan kondisi ini bertahan sampai sekarang.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="modern" data-side="right">
-          <div class="al-event-card al-reveal">
-            <time>2021</time><span class="al-era">Modern</span>
-            <h3>Linux terbang di Mars</h3>
-            <p>Helikopter Ingenuity milik NASA berhasil terbang di Mars sambil menjalankan Linux. Di tahun ini juga Linux genap berusia 30 tahun.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable" data-era="modern" data-side="left">
-          <div class="al-event-card al-reveal">
-            <time>2022</time><span class="al-era">Modern</span>
-            <h3>Bahasa Rust masuk ke kernel</h3>
-            <p>Mulai Linux 6.1, kernel menerima kode Rust, bahasa yang lebih aman dalam mengelola memori, di samping bahasa C.</p>
-          </div>
-        </article>
-
-        <article class="al-event al-searchable is-highlight" data-era="modern" data-side="right">
-          <div class="al-event-card al-reveal">
-            <time>2026</time><span class="al-era">Modern</span>
-            <h3>Memasuki era Linux 7</h3>
-            <p>Setelah versi 6.19, Linus menaikkan nomor versi ke Linux 7.0 yang rilis 12 April 2026. Versi baru kernel terus rilis kira-kira setiap 2–3 bulan.</p>
-          </div>
-        </article>
+        <article class="al-event is-first" data-era="akar" data-side="left"><div class="al-event-card al-reveal"><time>1969</time><span class="al-era">Akar</span><h3>Unix lahir di Bell Labs</h3><p>Dibuat Ken Thompson &amp; Dennis Ritchie. Konsepnya jadi cetak biru Linux.</p></div></article>
+        <article class="al-event" data-era="akar" data-side="right"><div class="al-event-card al-reveal"><time>1983</time><span class="al-era">Akar</span><h3>Proyek GNU dimulai</h3><p>Richard Stallman merintis sistem operasi bebas. Tools-nya kelak dipakai Linux.</p></div></article>
+        <article class="al-event" data-era="akar" data-side="left"><div class="al-event-card al-reveal"><time>1987</time><span class="al-era">Akar</span><h3>MINIX untuk belajar</h3><p>OS mini buatan Andrew Tanenbaum, tempat Linus belajar.</p></div></article>
+        <article class="al-event is-highlight" data-era="lahir" data-side="right"><div class="al-event-card al-reveal"><time>25 Agu 1991</time><span class="al-era">Kelahiran</span><h3>Linus mengumumkan Linux</h3><p>Mahasiswa Universitas Helsinki, 21 tahun, menyebutnya "just a hobby".</p></div></article>
+        <article class="al-event" data-era="lahir" data-side="left"><div class="al-event-card al-reveal"><time>1992</time><span class="al-era">Kelahiran</span><h3>Berlisensi GNU GPL</h3><p>Linux resmi bebas dipakai, diubah, dan dibagikan.</p></div></article>
+        <article class="al-event" data-era="lahir" data-side="right"><div class="al-event-card al-reveal"><time>1993</time><span class="al-era">Kelahiran</span><h3>Distro pertama lahir</h3><p>Slackware dan Debian. Debian kini induk Ubuntu &amp; Kali.</p></div></article>
+        <article class="al-event is-highlight" data-era="lahir" data-side="left"><div class="al-event-card al-reveal"><time>14 Mar 1994</time><span class="al-era">Kelahiran</span><h3>Linux 1.0 rilis</h3><p>Versi stabil pertama, sudah mendukung jaringan.</p></div></article>
+        <article class="al-event" data-era="tumbuh" data-side="right"><div class="al-event-card al-reveal"><time>2004</time><span class="al-era">Berkembang</span><h3>Ubuntu hadir</h3><p>Membawa Linux ke pengguna awam.</p></div></article>
+        <article class="al-event" data-era="tumbuh" data-side="left"><div class="al-event-card al-reveal"><time>2005</time><span class="al-era">Berkembang</span><h3>Git diciptakan</h3><p>Dibuat Linus untuk kode kernel; kini dipakai jutaan developer.</p></div></article>
+        <article class="al-event is-highlight" data-era="tumbuh" data-side="right"><div class="al-event-card al-reveal"><time>2008</time><span class="al-era">Berkembang</span><h3>Android rilis</h3><p>Ponsel Android pertama hadir, berbasis kernel Linux.</p></div></article>
+        <article class="al-event is-highlight" data-era="modern" data-side="left"><div class="al-event-card al-reveal"><time>Nov 2017</time><span class="al-era">Modern</span><h3>100% superkomputer</h3><p>Seluruh 500 superkomputer tercepat dunia memakai Linux.</p></div></article>
+        <article class="al-event" data-era="modern" data-side="right"><div class="al-event-card al-reveal"><time>2021</time><span class="al-era">Modern</span><h3>Linux terbang di Mars</h3><p>Helikopter Ingenuity milik NASA menjalankan Linux.</p></div></article>
+        <article class="al-event" data-era="modern" data-side="left"><div class="al-event-card al-reveal"><time>2022</time><span class="al-era">Modern</span><h3>Rust masuk kernel</h3><p>Bahasa yang lebih aman soal memori, mulai Linux 6.1.</p></div></article>
+        <article class="al-event is-highlight" data-era="modern" data-side="right"><div class="al-event-card al-reveal"><time>2026</time><span class="al-era">Modern</span><h3>Era Linux 7</h3><p>Linux 7.0 rilis 12 April 2026. Versi baru terus hadir tiap 2–3 bulan.</p></div></article>
       </div>
 
       <h3 class="al-subhead al-reveal">Tokoh di Balik Linux</h3>
       <div class="al-people">
-        <article class="al-card al-person al-reveal al-searchable">
-          <span class="al-avatar" aria-hidden="true">LT</span>
-          <div>
-            <h3>Linus Torvalds</h3>
-            <small>Pencipta kernel Linux &amp; Git</small>
-            <p>Programmer asal Finlandia yang membuat Linux saat kuliah di Universitas Helsinki. Sampai sekarang ia masih memimpin pengembangan kernel.</p>
-          </div>
-        </article>
-        <article class="al-card al-person al-reveal al-searchable">
-          <span class="al-avatar" aria-hidden="true">RS</span>
-          <div>
-            <h3>Richard Stallman</h3>
-            <small>Pendiri proyek GNU &amp; FSF</small>
-            <p>Penggerak "free software". Lisensi GNU GPL yang dipakai Linux berasal dari gerakan yang ia mulai.</p>
-          </div>
-        </article>
-        <article class="al-card al-person al-reveal al-searchable">
-          <span class="al-avatar" aria-hidden="true">AT</span>
-          <div>
-            <h3>Andrew S. Tanenbaum</h3>
-            <small>Pembuat MINIX</small>
-            <p>Profesor ilmu komputer di Belanda. MINIX buatannya untuk mengajar jadi inspirasi dan "tempat belajar" Linus.</p>
-          </div>
-        </article>
+        <article class="al-card al-person al-reveal"><span class="al-avatar" aria-hidden="true">LT</span><div><h3>Linus Torvalds</h3><small>Pencipta Linux &amp; Git</small><p>Programmer Finlandia yang masih memimpin pengembangan kernel.</p></div></article>
+        <article class="al-card al-person al-reveal"><span class="al-avatar" aria-hidden="true">RS</span><div><h3>Richard Stallman</h3><small>Pendiri GNU &amp; FSF</small><p>Penggerak free software; lisensi GPL lahir dari gerakannya.</p></div></article>
+        <article class="al-card al-person al-reveal"><span class="al-avatar" aria-hidden="true">AT</span><div><h3>Andrew S. Tanenbaum</h3><small>Pembuat MINIX</small><p>Profesor yang MINIX-nya jadi inspirasi Linus.</p></div></article>
       </div>
     </section>
 
@@ -446,75 +279,33 @@
         <span class="al-num" aria-hidden="true">03</span>
         <div>
           <p class="eyebrow al-eyebrow">FUNGSI</p>
-          <h2 id="h-fungsi">Apa Saja yang Dikerjakan Linux?</h2>
-          <p>Sebagai sistem operasi, Linux bekerja di balik layar mengatur semua hal. Di tiap kartu ada contoh perintah terminal yang bisa kamu coba (klik ikon untuk menyalin).</p>
+          <h2 id="h-fungsi">Apa yang Dikerjakan Linux?</h2>
+          <p>Delapan tugas utama sistem operasi, lengkap dengan perintah untuk melihatnya.</p>
         </div>
       </header>
 
       <div class="al-func-grid">
-        <article class="al-card al-func al-reveal al-searchable">
-          <span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-cpu"/></svg></span>
-          <h3>Manajemen Proses</h3>
-          <p>Mengatur program yang sedang berjalan (proses): mana yang jalan duluan, berapa lama, dan kapan berhenti. Inilah yang membuat komputer bisa multitasking.</p>
-          <div class="al-cmd"><code>ps aux</code><button class="al-copy" type="button" data-copy="ps aux" aria-label="Salin perintah ps aux"><svg class="al-svg" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
-        </article>
-        <article class="al-card al-func al-reveal al-searchable">
-          <span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-memory"/></svg></span>
-          <h3>Manajemen Memori</h3>
-          <p>Membagi RAM ke setiap program secara adil dan memastikan satu program tidak bisa mengacak-acak memori milik program lain.</p>
-          <div class="al-cmd"><code>free -h</code><button class="al-copy" type="button" data-copy="free -h" aria-label="Salin perintah free -h"><svg class="al-svg" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
-        </article>
-        <article class="al-card al-func al-reveal al-searchable">
-          <span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-folder"/></svg></span>
-          <h3>Manajemen File</h3>
-          <p>Menyimpan, membaca, dan mengatur file serta folder di disk lewat file system seperti ext4 atau Btrfs.</p>
-          <div class="al-cmd"><code>ls -l</code><button class="al-copy" type="button" data-copy="ls -l" aria-label="Salin perintah ls -l"><svg class="al-svg" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
-        </article>
-        <article class="al-card al-func al-reveal al-searchable">
-          <span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-monitor"/></svg></span>
-          <h3>Mengelola Hardware</h3>
-          <p>Lewat driver, kernel "mengajak bicara" keyboard, layar, USB, kartu jaringan, dan perangkat lain supaya bisa dipakai aplikasi.</p>
-          <div class="al-cmd"><code>lsusb</code><button class="al-copy" type="button" data-copy="lsusb" aria-label="Salin perintah lsusb"><svg class="al-svg" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
-        </article>
-        <article class="al-card al-func al-reveal al-searchable">
-          <span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-lock"/></svg></span>
-          <h3>Keamanan &amp; Hak Akses</h3>
-          <p>Mengatur siapa boleh melakukan apa. Setiap file punya pemilik dan izin, dan tugas admin dibatasi lewat akun root atau perintah sudo.</p>
-          <div class="al-cmd"><code>id</code><button class="al-copy" type="button" data-copy="id" aria-label="Salin perintah id"><svg class="al-svg" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
-        </article>
-        <article class="al-card al-func al-reveal al-searchable">
-          <span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-globe"/></svg></span>
-          <h3>Jaringan</h3>
-          <p>Menghubungkan komputer ke internet atau jaringan lokal, termasuk menjalankan server web, SSH, dan firewall.</p>
-          <div class="al-cmd"><code>ip a</code><button class="al-copy" type="button" data-copy="ip a" aria-label="Salin perintah ip a"><svg class="al-svg" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
-        </article>
-        <article class="al-card al-func al-reveal al-searchable">
-          <span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-terminal"/></svg></span>
-          <h3>Antarmuka Pengguna</h3>
-          <p>Menyediakan cara berinteraksi: lewat terminal (CLI) untuk perintah teks, atau lewat desktop grafis (GUI) seperti GNOME dan KDE Plasma.</p>
-          <div class="al-cmd"><code>echo $SHELL</code><button class="al-copy" type="button" data-copy="echo $SHELL" aria-label="Salin perintah echo $SHELL"><svg class="al-svg" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
-        </article>
-        <article class="al-card al-func al-reveal al-searchable">
-          <span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-apps"/></svg></span>
-          <h3>Menjalankan Aplikasi</h3>
-          <p>Menjadi "panggung" bagi aplikasi, sekaligus memudahkan install dan update software lewat package manager.</p>
-          <div class="al-cmd"><code>sudo apt install git</code><button class="al-copy" type="button" data-copy="sudo apt install git" aria-label="Salin perintah sudo apt install git"><svg class="al-svg" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
-        </article>
+        <article class="al-card al-func al-reveal"><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-cpu"/></svg></span><h3>Manajemen Proses</h3><p>Mengatur program yang berjalan agar bisa multitasking.</p><div class="cmd-line"><code>ps aux</code><button class="copy-btn" type="button" data-copy="ps aux" aria-label="Salin ps aux"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button></div></article>
+        <article class="al-card al-func al-reveal"><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-memory"/></svg></span><h3>Manajemen Memori</h3><p>Membagi RAM ke tiap program secara aman.</p><div class="cmd-line"><code>free -h</code><button class="copy-btn" type="button" data-copy="free -h" aria-label="Salin free -h"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button></div></article>
+        <article class="al-card al-func al-reveal"><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-folder"/></svg></span><h3>Manajemen File</h3><p>Menyimpan dan mengatur file lewat file system seperti ext4.</p><div class="cmd-line"><code>ls -l</code><button class="copy-btn" type="button" data-copy="ls -l" aria-label="Salin ls -l"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button></div></article>
+        <article class="al-card al-func al-reveal"><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-monitor"/></svg></span><h3>Mengelola Hardware</h3><p>Menghubungkan keyboard, layar, USB, dan lainnya lewat driver.</p><div class="cmd-line"><code>lsusb</code><button class="copy-btn" type="button" data-copy="lsusb" aria-label="Salin lsusb"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button></div></article>
+        <article class="al-card al-func al-reveal"><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-lock"/></svg></span><h3>Keamanan &amp; Akses</h3><p>Mengatur siapa boleh mengakses apa.</p><div class="cmd-line"><code>id</code><button class="copy-btn" type="button" data-copy="id" aria-label="Salin id"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button></div></article>
+        <article class="al-card al-func al-reveal"><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-globe"/></svg></span><h3>Jaringan</h3><p>Menghubungkan ke internet dan menjalankan server.</p><div class="cmd-line"><code>ip a</code><button class="copy-btn" type="button" data-copy="ip a" aria-label="Salin ip a"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button></div></article>
+        <article class="al-card al-func al-reveal"><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-terminal"/></svg></span><h3>Antarmuka</h3><p>Menyediakan terminal (CLI) dan desktop grafis (GUI).</p><div class="cmd-line"><code>echo $SHELL</code><button class="copy-btn" type="button" data-copy="echo $SHELL" aria-label="Salin echo $SHELL"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button></div></article>
+        <article class="al-card al-func al-reveal"><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-apps"/></svg></span><h3>Menjalankan Aplikasi</h3><p>Memasang dan menjalankan software lewat package manager.</p><div class="cmd-line"><code>sudo apt install git</code><button class="copy-btn" type="button" data-copy="sudo apt install git" aria-label="Salin sudo apt install git"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button></div></article>
       </div>
 
-      <h3 class="al-subhead al-reveal">Linux Dipakai di Mana Saja?</h3>
-      <p class="al-subtext al-reveal">Mungkin kamu belum pernah install Linux, tapi hampir pasti kamu sudah memakainya setiap hari tanpa sadar.</p>
+      <h3 class="al-subhead al-reveal">Linux Dipakai di Mana?</h3>
+      <p class="al-subtext al-reveal">Mungkin belum pernah install, tapi kamu hampir pasti memakainya setiap hari.</p>
       <div class="al-uses">
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-server"/></svg><b>Server &amp; Website</b><span>Mayoritas server web di internet berjalan di Linux.</span></div>
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-cloud"/></svg><b>Cloud &amp; Container</b><span>AWS, Google Cloud, dan Azure banyak memakai Linux. Docker pun lahir di Linux.</span></div>
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-phone"/></svg><b>Smartphone</b><span>Android berjalan di atas kernel Linux.</span></div>
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-zap"/></svg><b>Superkomputer</b><span>100% superkomputer TOP500 memakai Linux.</span></div>
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-wifi"/></svg><b>IoT &amp; Embedded</b><span>Router, smart TV, kamera CCTV, sampai Raspberry Pi.</span></div>
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-laptop"/></svg><b>Desktop &amp; Laptop</b><span>Untuk belajar, kerja, dan programming sehari-hari.</span></div>
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-shield"/></svg><b>Keamanan Siber</b><span>Kali Linux dan Parrot OS jadi andalan para pentester.</span></div>
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-gamepad"/></svg><b>Gaming</b><span>Steam Deck menjalankan SteamOS yang berbasis Linux.</span></div>
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-car"/></svg><b>Otomotif</b><span>Sistem hiburan di sejumlah mobil memakai Automotive Grade Linux.</span></div>
-        <div class="al-use al-reveal al-searchable"><svg class="al-svg" aria-hidden="true"><use href="#i-rocket"/></svg><b>Luar Angkasa</b><span>Helikopter Ingenuity NASA di Mars menjalankan Linux.</span></div>
+        <div class="al-use al-reveal"><svg class="al-svg" aria-hidden="true"><use href="#i-server"/></svg><b>Server &amp; Web</b><span>Mayoritas server web dunia.</span></div>
+        <div class="al-use al-reveal"><svg class="al-svg" aria-hidden="true"><use href="#i-cloud"/></svg><b>Cloud</b><span>AWS, Google Cloud, Docker.</span></div>
+        <div class="al-use al-reveal"><svg class="al-svg" aria-hidden="true"><use href="#i-phone"/></svg><b>Android</b><span>Berjalan di atas kernel Linux.</span></div>
+        <div class="al-use al-reveal"><svg class="al-svg" aria-hidden="true"><use href="#i-zap"/></svg><b>Superkomputer</b><span>100% daftar TOP500.</span></div>
+        <div class="al-use al-reveal"><svg class="al-svg" aria-hidden="true"><use href="#i-wifi"/></svg><b>IoT</b><span>Router, smart TV, Raspberry Pi.</span></div>
+        <div class="al-use al-reveal"><svg class="al-svg" aria-hidden="true"><use href="#i-shield"/></svg><b>Keamanan Siber</b><span>Kali Linux, Parrot OS.</span></div>
+        <div class="al-use al-reveal"><svg class="al-svg" aria-hidden="true"><use href="#i-gamepad"/></svg><b>Gaming</b><span>Steam Deck (SteamOS).</span></div>
+        <div class="al-use al-reveal"><svg class="al-svg" aria-hidden="true"><use href="#i-rocket"/></svg><b>Luar Angkasa</b><span>Helikopter Ingenuity NASA.</span></div>
       </div>
     </section>
 
@@ -527,119 +318,83 @@
         <div>
           <p class="eyebrow al-eyebrow">KARAKTERISTIK</p>
           <h2 id="h-karakteristik">Ciri Khas Linux</h2>
-          <p>Hal-hal yang membuat Linux berbeda dari sistem operasi lain. Pilih salah satu karakteristik untuk melihat penjelasan dan contohnya di terminal.</p>
+          <p>Pilih salah satu untuk melihat penjelasan dan contohnya di terminal.</p>
         </div>
       </header>
 
-      <!-- Tab: tombol kiri, isi kanan (lihat about.js bagian 8) -->
+      <!-- Tab: tombol kiri, isi kanan (about.js bagian 8) -->
       <div class="al-tabs al-reveal">
         <div class="al-tablist" role="tablist" aria-label="Karakteristik Linux" aria-orientation="vertical">
-          <button class="al-tab al-searchable" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true"><b>01</b>Open Source</button>
-          <button class="al-tab al-searchable" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1"><b>02</b>Multiuser</button>
-          <button class="al-tab al-searchable" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1"><b>03</b>Multitasking</button>
-          <button class="al-tab al-searchable" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1"><b>04</b>Portabel</button>
-          <button class="al-tab al-searchable" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false" tabindex="-1"><b>05</b>File Berstruktur Hierarki</button>
-          <button class="al-tab al-searchable" role="tab" id="tab-6" aria-controls="panel-6" aria-selected="false" tabindex="-1"><b>06</b>Everything is a File</button>
-          <button class="al-tab al-searchable" role="tab" id="tab-7" aria-controls="panel-7" aria-selected="false" tabindex="-1"><b>07</b>Shell yang Powerful</button>
-          <button class="al-tab al-searchable" role="tab" id="tab-8" aria-controls="panel-8" aria-selected="false" tabindex="-1"><b>08</b>Keamanan Berbasis Izin</button>
-          <button class="al-tab al-searchable" role="tab" id="tab-9" aria-controls="panel-9" aria-selected="false" tabindex="-1"><b>09</b>Case-Sensitive</button>
-          <button class="al-tab al-searchable" role="tab" id="tab-10" aria-controls="panel-10" aria-selected="false" tabindex="-1"><b>10</b>Modular</button>
+          <button class="al-tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true"><b>01</b>Open Source</button>
+          <button class="al-tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1"><b>02</b>Multiuser</button>
+          <button class="al-tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1"><b>03</b>Multitasking</button>
+          <button class="al-tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1"><b>04</b>Portabel</button>
+          <button class="al-tab" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false" tabindex="-1"><b>05</b>File Berhierarki</button>
+          <button class="al-tab" role="tab" id="tab-6" aria-controls="panel-6" aria-selected="false" tabindex="-1"><b>06</b>Shell Powerful</button>
+          <button class="al-tab" role="tab" id="tab-7" aria-controls="panel-7" aria-selected="false" tabindex="-1"><b>07</b>Izin File Ketat</button>
+          <button class="al-tab" role="tab" id="tab-8" aria-controls="panel-8" aria-selected="false" tabindex="-1"><b>08</b>Case-Sensitive</button>
         </div>
 
         <div class="al-tabpanels">
           <div class="al-tabpanel is-active" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
-            <span class="al-badge">KARAKTERISTIK 01</span>
-            <h3>Open Source</h3>
-            <p>Kode sumber Linux terbuka untuk umum. Siapa pun boleh melihat, mempelajari, memodifikasi, dan membagikannya lagi, selama mengikuti lisensi GNU GPL versi 2.</p>
-            <ul class="al-points"><li>Bisa dipelajari langsung dari kodenya</li><li>Celah keamanan bisa ditemukan dan diperbaiki banyak orang</li><li>Tidak bergantung pada satu perusahaan saja</li></ul>
+            <span class="al-badge">KARAKTERISTIK 01</span><h3>Open Source</h3>
+            <p>Kodenya terbuka untuk siapa saja: boleh dipelajari, diubah, dan dibagikan di bawah lisensi GNU GPL v2. Celah keamanan pun lebih cepat ketahuan dan diperbaiki.</p>
             <pre class="al-mini-term"><span>$</span> git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 Cloning into 'linux'...</pre>
           </div>
           <div class="al-tabpanel" role="tabpanel" id="panel-2" aria-labelledby="tab-2">
-            <span class="al-badge">KARAKTERISTIK 02</span>
-            <h3>Multiuser</h3>
-            <p>Satu sistem Linux bisa dipakai banyak pengguna, bahkan secara bersamaan (misalnya lewat SSH). Tiap pengguna punya akun, folder home, dan izin masing-masing.</p>
-            <ul class="al-points"><li>File antarpengguna terpisah dan terlindungi</li><li>Cocok untuk server yang diakses banyak orang</li><li>Ada akun khusus admin bernama <code>root</code></li></ul>
+            <span class="al-badge">KARAKTERISTIK 02</span><h3>Multiuser</h3>
+            <p>Banyak pengguna bisa memakai satu sistem bersamaan, masing-masing dengan akun, folder, dan izin sendiri.</p>
             <pre class="al-mini-term"><span>$</span> who
 tux      tty2     2026-11-18 08:02
 admin    pts/0    2026-11-18 09:15 (192.168.1.7)</pre>
           </div>
           <div class="al-tabpanel" role="tabpanel" id="panel-3" aria-labelledby="tab-3">
-            <span class="al-badge">KARAKTERISTIK 03</span>
-            <h3>Multitasking</h3>
-            <p>Linux bisa menjalankan banyak program sekaligus. Kernel membagi waktu CPU dalam potongan yang sangat kecil, sehingga semua program terasa berjalan bersamaan.</p>
-            <ul class="al-points"><li>Dengar musik sambil coding sambil download</li><li>Program di latar belakang tetap jalan</li><li>Proses bisa dipantau dan dihentikan kapan saja</li></ul>
+            <span class="al-badge">KARAKTERISTIK 03</span><h3>Multitasking</h3>
+            <p>Banyak program berjalan sekaligus. Kernel membagi waktu CPU dalam potongan sangat kecil, jadi semuanya terasa jalan bersamaan.</p>
             <pre class="al-mini-term"><span>$</span> top -bn1 | head -2
 top - 09:20:01 up 3 days,  2 users,  load average: 0.42, 0.37, 0.30
 Tasks: 214 total,   1 running, 213 sleeping,   0 stopped</pre>
           </div>
           <div class="al-tabpanel" role="tabpanel" id="panel-4" aria-labelledby="tab-4">
-            <span class="al-badge">KARAKTERISTIK 04</span>
-            <h3>Portabel</h3>
-            <p>Linux bisa berjalan di banyak jenis prosesor dan perangkat: PC x86, ARM di smartphone dan Raspberry Pi, RISC-V, sampai mainframe dan superkomputer.</p>
-            <ul class="al-points"><li>Satu kernel, banyak arsitektur</li><li>Bisa dipakai dari jam tangan pintar sampai server raksasa</li><li>Mudah diadaptasi untuk perangkat baru</li></ul>
+            <span class="al-badge">KARAKTERISTIK 04</span><h3>Portabel</h3>
+            <p>Satu kernel untuk banyak jenis prosesor: PC x86, ARM di HP dan Raspberry Pi, RISC-V, sampai superkomputer.</p>
             <pre class="al-mini-term"><span>$</span> uname -m
 x86_64</pre>
           </div>
           <div class="al-tabpanel" role="tabpanel" id="panel-5" aria-labelledby="tab-5">
-            <span class="al-badge">KARAKTERISTIK 05</span>
-            <h3>File Berstruktur Hierarki</h3>
-            <p>Semua file tersusun seperti pohon terbalik yang berawal dari satu akar, yaitu <code>/</code> (root). Tidak ada drive C: atau D: seperti di Windows; disk lain "ditempelkan" ke folder tertentu.</p>
-            <ul class="al-points"><li><code>/home</code> berisi folder milik pengguna</li><li><code>/etc</code> berisi file konfigurasi sistem</li><li><code>/bin</code> dan <code>/usr</code> berisi program</li></ul>
+            <span class="al-badge">KARAKTERISTIK 05</span><h3>File Berhierarki</h3>
+            <p>Semua file tersusun seperti pohon dari satu akar, <code>/</code> (root). Tidak ada drive C: atau D:.</p>
             <pre class="al-mini-term"><span>$</span> ls /
 bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</pre>
           </div>
           <div class="al-tabpanel" role="tabpanel" id="panel-6" aria-labelledby="tab-6">
-            <span class="al-badge">KARAKTERISTIK 06</span>
-            <h3>Everything is a File</h3>
-            <p>Di Linux, hampir semuanya diperlakukan sebagai file, termasuk perangkat keras. Contohnya, disk muncul sebagai <code>/dev/sda</code>, dan info CPU bisa dibaca dari <code>/proc/cpuinfo</code>.</p>
-            <ul class="al-points"><li>Perangkat bisa diakses dengan perintah file biasa</li><li>Info sistem bisa dibaca seperti membaca teks</li><li>Konsep ini diwarisi dari Unix</li></ul>
-            <pre class="al-mini-term"><span>$</span> grep -m1 "model name" /proc/cpuinfo
-model name      : AMD Ryzen 5 5600H with Radeon Graphics</pre>
-          </div>
-          <div class="al-tabpanel" role="tabpanel" id="panel-7" aria-labelledby="tab-7">
-            <span class="al-badge">KARAKTERISTIK 07</span>
-            <h3>Shell yang Powerful</h3>
-            <p>Terminal di Linux bukan sekadar "layar hitam". Dengan shell seperti Bash, satu baris perintah bisa menggantikan puluhan klik, dan tugas berulang bisa diotomatisasi dengan script.</p>
-            <ul class="al-points"><li>Perintah bisa digabung dengan pipe <code>|</code></li><li>Tugas rutin bisa dijadwalkan otomatis</li><li>Server bisa dikelola dari jarak jauh lewat SSH</li></ul>
+            <span class="al-badge">KARAKTERISTIK 06</span><h3>Shell Powerful</h3>
+            <p>Satu baris perintah bisa menggantikan puluhan klik, dan tugas berulang bisa diotomatisasi dengan script.</p>
             <pre class="al-mini-term"><span>$</span> ls ~/Pictures/*.jpg | wc -l
 128</pre>
           </div>
-          <div class="al-tabpanel" role="tabpanel" id="panel-8" aria-labelledby="tab-8">
-            <span class="al-badge">KARAKTERISTIK 08</span>
-            <h3>Keamanan Berbasis Izin</h3>
-            <p>Setiap file punya pemilik, grup, dan izin baca (<code>r</code>), tulis (<code>w</code>), dan jalankan (<code>x</code>). Pengguna biasa tidak bisa mengubah file sistem tanpa izin root. Coba simulatornya di bawah!</p>
-            <ul class="al-points"><li>Malware sulit merusak sistem tanpa izin root</li><li>Data tiap pengguna saling terlindungi</li><li>Izin bisa diatur dengan perintah <code>chmod</code></li></ul>
+          <div class="al-tabpanel" role="tabpanel" id="panel-7" aria-labelledby="tab-7">
+            <span class="al-badge">KARAKTERISTIK 07</span><h3>Izin File Ketat</h3>
+            <p>Tiap file punya pemilik dan izin baca (<code>r</code>), tulis (<code>w</code>), jalankan (<code>x</code>). Tanpa izin root, file sistem tidak bisa diubah. Coba simulatornya di bawah.</p>
             <pre class="al-mini-term"><span>$</span> ls -l /etc/shadow
 -rw-r----- 1 root shadow 1450 Nov 18 08:00 /etc/shadow</pre>
           </div>
-          <div class="al-tabpanel" role="tabpanel" id="panel-9" aria-labelledby="tab-9">
-            <span class="al-badge">KARAKTERISTIK 09</span>
-            <h3>Case-Sensitive</h3>
-            <p>Linux membedakan huruf besar dan kecil. <code>Tugas.txt</code>, <code>tugas.txt</code>, dan <code>TUGAS.txt</code> dianggap tiga file yang berbeda. Begitu juga dengan perintah: <code>ls</code> bisa jalan, <code>LS</code> tidak.</p>
-            <ul class="al-points"><li>Teliti saat mengetik nama file dan perintah</li><li>Biasakan memakai huruf kecil</li><li>Berlaku juga untuk nama folder</li></ul>
+          <div class="al-tabpanel" role="tabpanel" id="panel-8" aria-labelledby="tab-8">
+            <span class="al-badge">KARAKTERISTIK 08</span><h3>Case-Sensitive</h3>
+            <p>Huruf besar dan kecil dibedakan: <code>Tugas.txt</code> dan <code>tugas.txt</code> adalah dua file berbeda.</p>
             <pre class="al-mini-term"><span>$</span> ls
 Tugas.txt  TUGAS.txt  tugas.txt</pre>
-          </div>
-          <div class="al-tabpanel" role="tabpanel" id="panel-10" aria-labelledby="tab-10">
-            <span class="al-badge">KARAKTERISTIK 10</span>
-            <h3>Modular &amp; Bisa Dikustomisasi</h3>
-            <p>Komponen Linux bisa "dibongkar pasang". Driver dimuat sebagai modul kernel saat dibutuhkan, dan tampilan desktop bisa diganti sesuka hati (GNOME, KDE Plasma, XFCE, dan lainnya).</p>
-            <ul class="al-points"><li>Pasang hanya yang kamu butuhkan</li><li>Tampilan bisa dibuat mirip Windows atau macOS</li><li>Itulah sebabnya ada ratusan distro berbeda</li></ul>
-            <pre class="al-mini-term"><span>$</span> lsmod | head -3
-Module                  Size  Used by
-bluetooth            1028096  12
-snd_hda_intel          61440  4</pre>
           </div>
         </div>
       </div>
 
-      <!-- Simulator hak akses file (lihat about.js bagian 9) -->
+      <!-- Simulator hak akses file (about.js bagian 9) -->
       <div class="al-card al-perm al-reveal" id="simulator">
         <div class="al-perm-head">
           <span class="al-badge"><svg class="al-svg" aria-hidden="true"><use href="#i-lock"/></svg>COBA SENDIRI</span>
           <h3>Simulator Hak Akses File</h3>
-          <p>Centang izin untuk <b>owner</b> (pemilik), <b>group</b>, dan <b>others</b> (orang lain). Lihat bagaimana Linux menuliskannya dalam bentuk simbol dan angka.</p>
+          <p>Centang izin untuk <b>owner</b>, <b>group</b>, dan <b>others</b>, lalu lihat hasilnya dalam simbol dan angka.</p>
         </div>
 
         <div class="al-perm-body">
@@ -678,14 +433,14 @@ snd_hda_intel          61440  4</pre>
             <div class="al-presets" role="group" aria-label="Contoh izin populer">
               <button type="button" data-preset="644">644 <small>file biasa</small></button>
               <button type="button" data-preset="755">755 <small>program</small></button>
-              <button type="button" data-preset="600">600 <small>file rahasia</small></button>
+              <button type="button" data-preset="600">600 <small>rahasia</small></button>
               <button type="button" data-preset="777">777 <small>bahaya!</small></button>
             </div>
           </div>
         </div>
 
         <p class="al-perm-explain" id="permExplain" aria-live="polite">Owner bisa membaca, menulis, dan menjalankan. Group bisa membaca dan menjalankan. Others hanya bisa membaca.</p>
-        <p class="al-perm-warn" id="permWarn" hidden><svg class="al-svg" aria-hidden="true"><use href="#i-alert"/></svg><span>Hati-hati: semua orang bisa mengubah file ini. Di dunia keamanan siber, izin seperti 777 sering jadi celah serangan.</span></p>
+        <p class="al-perm-warn" id="permWarn" hidden><svg class="al-svg" aria-hidden="true"><use href="#i-alert"/></svg><span>Hati-hati: semua orang bisa mengubah file ini. Izin seperti 777 sering jadi celah serangan.</span></p>
       </div>
     </section>
 
@@ -697,52 +452,46 @@ snd_hda_intel          61440  4</pre>
         <span class="al-num" aria-hidden="true">05</span>
         <div>
           <p class="eyebrow al-eyebrow">KEUNGGULAN</p>
-          <h2 id="h-keunggulan">Kenapa Banyak yang Memilih Linux?</h2>
-          <p>Dari mahasiswa sampai NASA, alasan memakai Linux biasanya kembali ke poin-poin berikut.</p>
+          <h2 id="h-keunggulan">Kenapa Memilih Linux?</h2>
+          <p>Alasan Linux dipakai dari laptop mahasiswa sampai NASA.</p>
         </div>
       </header>
 
       <div class="al-adv-grid">
-        <article class="al-card al-adv al-reveal al-searchable"><span class="al-adv-num" aria-hidden="true">01</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-tag"/></svg></span><h3>Gratis</h3><p>Hampir semua distro bisa diunduh dan dipakai tanpa bayar lisensi, di berapa pun komputer yang kamu punya.</p></article>
-        <article class="al-card al-adv al-reveal al-searchable"><span class="al-adv-num" aria-hidden="true">02</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-eye"/></svg></span><h3>Transparan &amp; Menghargai Privasi</h3><p>Kodenya bisa diperiksa siapa saja, dan kebanyakan distro tidak menampilkan iklan atau memaksa pengumpulan data pengguna.</p></article>
-        <article class="al-card al-adv al-reveal al-searchable"><span class="al-adv-num" aria-hidden="true">03</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Lebih Aman</h3><p>Sistem izin yang ketat, pemisahan akun root, dan update keamanan yang cepat membuat Linux lebih sulit diserang malware.</p></article>
-        <article class="al-card al-adv al-reveal al-searchable"><span class="al-adv-num" aria-hidden="true">04</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-pulse"/></svg></span><h3>Stabil &amp; Andal</h3><p>Server Linux bisa menyala berbulan-bulan tanpa restart. Itulah alasan Linux dipercaya untuk server dan superkomputer.</p></article>
-        <article class="al-card al-adv al-reveal al-searchable"><span class="al-adv-num" aria-hidden="true">05</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-feather"/></svg></span><h3>Ringan</h3><p>Distro ringan seperti MX Linux, Lubuntu, atau Linux Lite bisa "menghidupkan" lagi laptop lama yang sudah lemot.</p></article>
-        <article class="al-card al-adv al-reveal al-searchable"><span class="al-adv-num" aria-hidden="true">06</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-sliders"/></svg></span><h3>Bebas Dikustomisasi</h3><p>Mulai dari tampilan desktop, ikon, sampai kernelnya sendiri bisa diubah sesuai selera dan kebutuhan.</p></article>
-        <article class="al-card al-adv al-reveal al-searchable"><span class="al-adv-num" aria-hidden="true">07</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Komunitas Besar</h3><p>Forum, dokumentasi, dan grup diskusi tersebar di seluruh dunia, jadi hampir setiap masalah sudah ada solusinya.</p></article>
-        <article class="al-card al-adv al-reveal al-searchable"><span class="al-adv-num" aria-hidden="true">08</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-package"/></svg></span><h3>Install Software Mudah</h3><p>Package manager (apt, dnf, pacman) membuat install dan update aplikasi cukup dengan satu perintah, langsung dari sumber resmi.</p></article>
-        <article class="al-card al-adv al-reveal al-searchable"><span class="al-adv-num" aria-hidden="true">09</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-code"/></svg></span><h3>Rumahnya Developer &amp; Cyber Security</h3><p>Banyak tools pemrograman, server, dan keamanan siber dibuat untuk Linux lebih dulu, jadi skill Linux sangat dicari di dunia kerja IT.</p></article>
+        <article class="al-card al-adv al-reveal"><span class="al-adv-num" aria-hidden="true">01</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-tag"/></svg></span><h3>Gratis</h3><p>Tanpa biaya lisensi, di berapa pun komputer.</p></article>
+        <article class="al-card al-adv al-reveal"><span class="al-adv-num" aria-hidden="true">02</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Aman</h3><p>Izin ketat dan update cepat membuatnya sulit ditembus malware.</p></article>
+        <article class="al-card al-adv al-reveal"><span class="al-adv-num" aria-hidden="true">03</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-pulse"/></svg></span><h3>Stabil</h3><p>Server bisa menyala berbulan-bulan tanpa restart.</p></article>
+        <article class="al-card al-adv al-reveal"><span class="al-adv-num" aria-hidden="true">04</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-feather"/></svg></span><h3>Ringan</h3><p>Distro seperti MX Linux atau Lubuntu menghidupkan lagi laptop lama.</p></article>
+        <article class="al-card al-adv al-reveal"><span class="al-adv-num" aria-hidden="true">05</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-sliders"/></svg></span><h3>Fleksibel</h3><p>Tampilan sampai kernelnya bisa diatur sesuai selera.</p></article>
+        <article class="al-card al-adv al-reveal"><span class="al-adv-num" aria-hidden="true">06</span><span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Komunitas Besar</h3><p>Hampir setiap masalah sudah ada solusinya di forum.</p></article>
       </div>
 
-      <h3 class="al-subhead al-reveal">Linux vs Windows vs macOS</h3>
-      <p class="al-subtext al-reveal">Perbandingan singkat dan jujur. Setiap sistem operasi punya kelebihan masing-masing.</p>
+      <h3 class="al-subhead al-reveal" id="perbandingan">Linux vs Windows vs macOS</h3>
+      <p class="al-subtext al-reveal">Perbandingan singkat dan jujur. Tiap sistem punya kelebihan sendiri.</p>
       <div class="al-table-wrap al-reveal">
         <table class="al-table">
           <thead>
             <tr><th scope="col">Aspek</th><th scope="col" class="al-col-linux">Linux</th><th scope="col">Windows</th><th scope="col">macOS</th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">Harga</th><td class="al-col-linux"><i class="al-rate good">✓</i>Gratis untuk hampir semua distro</td><td><i class="al-rate mid">~</i>Berbayar (lisensi), sering sudah termasuk saat beli laptop</td><td><i class="al-rate mid">~</i>Gratis, tapi harus membeli perangkat Apple</td></tr>
-            <tr><th scope="row">Kode sumber</th><td class="al-col-linux"><i class="al-rate good">✓</i>Terbuka (open source)</td><td><i class="al-rate bad">✕</i>Tertutup</td><td><i class="al-rate mid">~</i>Sebagian besar tertutup</td></tr>
-            <tr><th scope="row">Kustomisasi</th><td class="al-col-linux"><i class="al-rate good">✓</i>Sangat bebas, sampai ke kernel</td><td><i class="al-rate mid">~</i>Terbatas</td><td><i class="al-rate mid">~</i>Terbatas</td></tr>
-            <tr><th scope="row">Dukungan perangkat</th><td class="al-col-linux"><i class="al-rate good">✓</i>Hampir semua PC, termasuk yang lama</td><td><i class="al-rate mid">~</i>Sebagian besar PC (Windows 11 butuh TPM 2.0)</td><td><i class="al-rate bad">✕</i>Hanya perangkat Apple</td></tr>
-            <tr><th scope="row">Server &amp; superkomputer</th><td class="al-col-linux"><i class="al-rate good">✓</i>Mayoritas server web &amp; 100% TOP500</td><td><i class="al-rate mid">~</i>Ada, terutama di jaringan perusahaan</td><td><i class="al-rate bad">✕</i>Sangat jarang</td></tr>
-            <tr><th scope="row">Ancaman malware</th><td class="al-col-linux"><i class="al-rate good">✓</i>Lebih jarang jadi target, izin ketat</td><td><i class="al-rate mid">~</i>Paling sering jadi target malware</td><td><i class="al-rate good">✓</i>Cukup aman, ekosistem tertutup</td></tr>
-            <tr><th scope="row">Software &amp; game populer</th><td class="al-col-linux"><i class="al-rate mid">~</i>Terbatas, sebagian lewat Proton/Wine</td><td><i class="al-rate good">✓</i>Paling lengkap</td><td><i class="al-rate mid">~</i>Lengkap untuk kreatif, game terbatas</td></tr>
-            <tr><th scope="row">Ramah pemula</th><td class="al-col-linux"><i class="al-rate mid">~</i>Perlu adaptasi, tergantung distro</td><td><i class="al-rate good">✓</i>Mudah, sudah familier</td><td><i class="al-rate good">✓</i>Mudah dan rapi</td></tr>
+            <tr><th scope="row">Harga</th><td class="al-col-linux"><i class="al-rate good">✓</i>Gratis</td><td><i class="al-rate mid">~</i>Berbayar (lisensi)</td><td><i class="al-rate mid">~</i>Gratis, tapi wajib perangkat Apple</td></tr>
+            <tr><th scope="row">Kode sumber</th><td class="al-col-linux"><i class="al-rate good">✓</i>Terbuka</td><td><i class="al-rate bad">✕</i>Tertutup</td><td><i class="al-rate mid">~</i>Sebagian besar tertutup</td></tr>
+            <tr><th scope="row">Kustomisasi</th><td class="al-col-linux"><i class="al-rate good">✓</i>Sangat bebas</td><td><i class="al-rate mid">~</i>Terbatas</td><td><i class="al-rate mid">~</i>Terbatas</td></tr>
+            <tr><th scope="row">Perangkat</th><td class="al-col-linux"><i class="al-rate good">✓</i>Hampir semua PC, termasuk lama</td><td><i class="al-rate mid">~</i>Sebagian besar PC</td><td><i class="al-rate bad">✕</i>Hanya Mac</td></tr>
+            <tr><th scope="row">Ancaman malware</th><td class="al-col-linux"><i class="al-rate good">✓</i>Jarang jadi target</td><td><i class="al-rate mid">~</i>Paling sering jadi target</td><td><i class="al-rate good">✓</i>Cukup aman</td></tr>
+            <tr><th scope="row">Software &amp; game</th><td class="al-col-linux"><i class="al-rate mid">~</i>Terbatas, sebagian lewat Proton</td><td><i class="al-rate good">✓</i>Paling lengkap</td><td><i class="al-rate mid">~</i>Kuat di aplikasi kreatif</td></tr>
           </tbody>
         </table>
       </div>
 
-      <aside class="al-callout al-reveal al-searchable" aria-label="Tantangan memakai Linux">
+      <aside class="al-callout al-reveal" aria-label="Tantangan memakai Linux">
         <span class="al-icon"><svg class="al-svg" aria-hidden="true"><use href="#i-alert"/></svg></span>
         <div>
-          <h3>Biar Adil: Tantangan Memakai Linux</h3>
+          <h3>Biar Adil: Tantangannya</h3>
           <ul>
-            <li>Beberapa software populer seperti Adobe Photoshop dan Microsoft Office belum punya versi resmi untuk Linux (alternatifnya: GIMP dan LibreOffice).</li>
-            <li>Sebagian game dengan sistem anti-cheat tertentu belum bisa dimainkan.</li>
-            <li>Perlu waktu adaptasi, terutama untuk terbiasa dengan terminal.</li>
-            <li>Driver beberapa perangkat (misalnya printer atau Wi-Fi tertentu) kadang perlu diatur manual.</li>
+            <li>Beberapa software populer (Photoshop, MS Office) belum ada versi resminya; alternatifnya GIMP dan LibreOffice.</li>
+            <li>Sebagian game dengan anti-cheat belum bisa dimainkan.</li>
+            <li>Perlu waktu adaptasi, terutama dengan terminal.</li>
           </ul>
         </div>
       </aside>
@@ -756,8 +505,8 @@ snd_hda_intel          61440  4</pre>
         <span class="al-num" aria-hidden="true">06</span>
         <div>
           <p class="eyebrow al-eyebrow">CEK PEMAHAMAN</p>
-          <h2 id="h-kuis">Kuis Singkat Linux</h2>
-          <p>8 soal pilihan ganda dari materi di atas. Jawabanmu langsung dicek, lengkap dengan penjelasannya.</p>
+          <h2 id="h-kuis">Kuis Singkat</h2>
+          <p>6 soal dari materi di atas, langsung dicek beserta penjelasannya.</p>
         </div>
       </header>
 
@@ -770,44 +519,41 @@ snd_hda_intel          61440  4</pre>
     <!-- ========== LANJUT BELAJAR ========== -->
     <section class="al-section al-next-section" aria-labelledby="h-next">
       <h3 class="al-subhead al-reveal" id="h-next">Lanjut Belajar</h3>
-      <!-- Sesuaikan nama file kalau halaman Frontend 4 / Frontend 5 memakai nama lain -->
       <div class="al-next">
-        <a class="al-card al-next-link al-reveal" href="index.html#distros">
-          <div><small>Distributions</small><b>Jelajahi Distro Linux</b></div>
-          <svg class="al-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-        </a>
-        <a class="al-card al-next-link al-reveal" href="commands.html">
-          <div><small>Commands</small><b>Belajar Perintah Dasar</b></div>
-          <svg class="al-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-        </a>
-        <a class="al-card al-next-link al-reveal" href="installation.html">
-          <div><small>Installation</small><b>Panduan Instalasi Linux</b></div>
-          <svg class="al-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-        </a>
+        <a class="al-card al-next-link al-reveal" href="index.html#distros"><div><small>Distributions</small><b>Pilih Distro Linux</b></div><svg class="al-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a class="al-card al-next-link al-reveal" href="commands.html"><div><small>Commands</small><b>Kuasai Perintah Dasar</b></div><svg class="al-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a class="al-card al-next-link al-reveal" href="installation.html"><div><small>Installation</small><b>Install Linux Sendiri</b></div><svg class="al-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </div>
 
       <div class="al-refs al-reveal">
         <h4><svg class="al-svg" aria-hidden="true"><use href="#i-book"/></svg>Sumber Referensi</h4>
         <ul>
-          <li><a href="https://www.kernel.org" target="_blank" rel="noopener">The Linux Kernel Archives (kernel.org)</a></li>
+          <li><a href="https://www.kernel.org" target="_blank" rel="noopener">kernel.org</a></li>
           <li><a href="https://docs.kernel.org" target="_blank" rel="noopener">Dokumentasi Kernel Linux</a></li>
-          <li><a href="https://www.gnu.org" target="_blank" rel="noopener">Proyek GNU (gnu.org)</a></li>
-          <li><a href="https://www.top500.org" target="_blank" rel="noopener">TOP500 Supercomputer Sites</a></li>
+          <li><a href="https://www.gnu.org" target="_blank" rel="noopener">Proyek GNU</a></li>
+          <li><a href="https://www.top500.org" target="_blank" rel="noopener">TOP500</a></li>
           <li><a href="https://www.linuxfoundation.org" target="_blank" rel="noopener">The Linux Foundation</a></li>
         </ul>
       </div>
     </section>
 
-    <!-- ========== FOOTER (sama dengan index.html) ========== -->
+    <!-- ========== FOOTER (sama di semua halaman) ========== -->
     <footer class="footer">
-      <div><span>♡</span> <b>Abyssal Byte</b><i>•</i> Learn <i>•</i> Share <i>•</i> Grow</div>
-      <div class="socials"><a href="#github" aria-label="GitHub">◉</a><a href="#video" aria-label="Video">▶</a><a href="#community" aria-label="Community">◈</a><a href="#web" aria-label="Website">◎</a></div>
+      <div class="footer-brand"><img src="assets/linux.jpg" alt="" width="28" height="28" /><b>LI<em>NUX</em></b><span>Website pengenalan Linux oleh Kelompok 3 · Abyssal Byte</span></div>
+      <nav class="footer-links" aria-label="Link footer">
+        <a href="about.html">About</a>
+        <a href="index.html#distros">Distro</a>
+        <a href="commands.html">Commands</a>
+        <a href="installation.html">Installation</a>
+        <a href="https://github.com/Batam-Linux-User-Group/Abyssal-Byte" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <small>© <span data-year>2026</span> Abyssal Byte · Open Source. Endless Possibilities.</small>
     </footer>
   </main>
 
   <!-- Tombol kembali ke atas -->
-  <button class="al-totop" id="alToTop" type="button" aria-label="Kembali ke atas">
-    <svg class="al-svg" aria-hidden="true"><use href="#i-arrow-up"/></svg>
+  <button class="to-top" id="toTop" type="button" aria-label="Kembali ke atas">
+    <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg>
   </button>
 
   <script src="script.js"></script>
