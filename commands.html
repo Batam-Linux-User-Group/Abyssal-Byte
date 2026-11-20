@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux Commands | Abyssal Byte</title>
+  <meta name="description" content="8 perintah dasar Linux beserta fungsi, contoh, dan simulator terminal untuk latihan." />
+  <link rel="icon" href="assets/linux.jpg" type="image/jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="commands.css" />
+  <!-- Menandai JavaScript aktif + mengingat sidebar yang disembunyikan (sebelum halaman tampil, supaya tidak berkedip) -->
+  <script>document.documentElement.classList.add("js"); try { if (localStorage.getItem("abyssal-nav-hidden") === "1") document.documentElement.classList.add("nav-hidden"); if (localStorage.getItem("abyssal-nav-dashboard") === "1") document.documentElement.classList.add("nav-dash-open"); } catch (e) {}</script>
+</head>
+<body>
+  <!-- Kumpulan ikon. Dipanggil dengan <svg class="icon"><use href="#i-nama"/></svg> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+      <symbol id="i-terminal" viewBox="0 0 24 24"><path d="M4 17l6-6-6-6M12 19h8"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+      <symbol id="i-repo" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="8" r="3"/><path d="M6 9v6M18 11a7 7 0 0 1-7 7H9"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+      <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+      <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
+      <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></symbol>
+      <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
+      <symbol id="i-memory" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="1.5"/><path d="M6 7v10M10 7v10M14 7v10M18 7v10M4 17v3M20 17v3"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
+      <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></symbol>
+      <symbol id="i-apps" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+      <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+      <symbol id="i-feather" viewBox="0 0 24 24"><path d="M20.2 12.2a6 6 0 0 0-8.5-8.5L5 10.5V19h8.5z"/><path d="M16 8L2 22M17.5 15H9"/></symbol>
+      <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+      <symbol id="i-package" viewBox="0 0 24 24"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></symbol>
+      <symbol id="i-server" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></symbol>
+      <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+      <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></symbol>
+      <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 12.6a11 11 0 0 1 14 0M1.4 9a16 16 0 0 1 21.2 0M8.5 16.1a6 6 0 0 1 7 0M12 20h.01"/></symbol>
+      <symbol id="i-gamepad" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/></symbol>
+      <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-4A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></symbol>
+      <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 16V11l2-5h10l2 5v5z"/><path d="M3 11h18"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></symbol>
+      <symbol id="i-usb" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="7" rx="1"/><path d="M5 9h14v8a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5z"/><path d="M10 5h.01M14 5h.01"/></symbol>
+      <symbol id="i-disk" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.7-4 3-9 3s-9-1.3-9-3M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/></symbol>
+      <symbol id="i-power" viewBox="0 0 24 24"><path d="M18.4 6.6a9 9 0 1 1-12.8 0M12 2v10"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ========== SIDEBAR (sama di semua halaman) ========== -->
+  <aside class="sidebar" id="sidebar" aria-label="Menu utama">
+    <a class="brand" href="index.html">
+      <img src="assets/linux.jpg" alt="Logo penguin Linux" />
+      <span class="brand-text"><b>LI<em>NUX</em></b><small>by Abyssal Byte</small></span>
+    </a>
+
+    <p class="nav-label">Menu</p>
+    <nav class="nav-menu">
+      <!-- Home + submenu. Klik tulisan = buka halaman Home, klik panah = buka/tutup submenu -->
+      <div class="nav-group">
+        <div class="nav-row">
+          <a class="nav-link nav-parent" href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Home</a>
+          <button class="nav-arrow" id="navDashArrow" type="button" aria-expanded="false" aria-controls="navDashSub" aria-label="Buka submenu Home">
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+          </button>
+        </div>
+        <div class="nav-sub" id="navDashSub">
+          <div class="nav-sub-inner">
+          <a class="nav-sublink" href="index.html#distros">Distributions</a>
+          <a class="nav-sublink" href="index.html#team">Our Team</a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="about.html"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>About Linux</a>
+      <a class="nav-link" href="commands.html"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg>Commands</a>
+      <a class="nav-link" href="installation.html"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Installation</a>
+    </nav>
+
+    <div class="sidebar-foot"><b>Kelompok 3</b><br>Abyssal Byte · Learn, Share, Grow</div>
+  </aside>
+
+  <main class="main-content" id="top">
+    <!-- ========== TOPBAR (sama di semua halaman) ========== -->
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Tampilkan/sembunyikan menu" title="Tampilkan/sembunyikan menu" aria-controls="sidebar">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+      <a class="topbar-brand" href="index.html" aria-label="Ke halaman Home"><img src="assets/linux.jpg" alt="" /><b>LI<em>NUX</em></b></a>
+      <div class="topbar-title">Abyssal Byte <span>/</span> <b>Commands</b></div>
+      <button class="search-trigger" type="button" data-search-open aria-label="Cari (Ctrl + K)">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <span>Cari materi, perintah, atau distro...</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+      <a class="topbar-icon" href="https://github.com/Batam-Linux-User-Group/Abyssal-Byte" target="_blank" rel="noopener" aria-label="Lihat repository di GitHub" title="Repository GitHub">
+        <svg class="icon" aria-hidden="true"><use href="#i-repo"/></svg>
+      </a>
+    </header>
+
+    <!-- =====================================================
+         HERO HALAMAN
+         ===================================================== -->
+    <section class="page-hero" aria-labelledby="cmdTitle">
+      <div>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><b>Commands</b></nav>
+        <p class="eyebrow">Linux Commands</p>
+        <h1 id="cmdTitle">Kuasai <em>Terminal</em> Linux</h1>
+        <p class="page-hero-desc">8 perintah dasar yang paling sering dipakai, lengkap dengan fungsi dan contohnya. Latihan langsung di simulator, tanpa takut salah.</p>
+        <ul class="page-meta">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg><span data-total-commands>8</span> perintah dasar</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>Contoh siap salin</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg>Simulator + misi</li>
+        </ul>
+      </div>
+
+      <div class="hero-term" aria-hidden="true">
+        <div class="hero-term-bar"><i></i><i></i><i></i><span>tux@abyssal: ~</span></div>
+        <pre><span>$</span> pwd
+/home/tux
+<span>$</span> ls
+<b>Documents</b>  <b>Downloads</b>  catatan.txt
+<span>$</span> cd Documents && cat tugas.txt
+Tugas Linux minggu ini:
+1. Pelajari perintah dasar<i class="hero-term-cursor"></i></pre>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         DASAR TERMINAL
+         ===================================================== -->
+    <section class="section" id="tips" aria-labelledby="h-tips">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Sebelum Mulai</p>
+          <h2 id="h-tips">Cara Membaca Perintah</h2>
+          <p>Hampir semua perintah Linux punya pola yang sama.</p>
+        </div>
+      </div>
+
+      <div class="anatomy card reveal">
+        <div class="anatomy-cmd" aria-label="Contoh perintah: ls -la /home">
+          <span class="part-cmd">ls</span><span class="part-opt">-la</span><span class="part-arg">/home</span>
+        </div>
+        <div class="anatomy-legend">
+          <div><i class="dot-cmd"></i><b>Perintah</b><span>Apa yang mau dilakukan</span></div>
+          <div><i class="dot-opt"></i><b>Opsi</b><span>Mengatur cara kerjanya, diawali tanda -</span></div>
+          <div><i class="dot-arg"></i><b>Argumen</b><span>Targetnya: file, folder, atau alamat</span></div>
+        </div>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip reveal"><kbd>Tab</kbd><b>Lengkapi otomatis</b><span>Ketik sebagian nama, tekan Tab.</span></div>
+        <div class="tip reveal"><kbd>↑ ↓</kbd><b>Perintah sebelumnya</b><span>Tidak perlu mengetik ulang.</span></div>
+        <div class="tip reveal"><kbd>Ctrl C</kbd><b>Hentikan perintah</b><span>Untuk proses yang macet atau terlalu lama.</span></div>
+        <div class="tip reveal"><kbd>man</kbd><b>Buka manual</b><span>Contoh: <code>man ls</code></span></div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         DAFTAR PERINTAH (kartu dibuat oleh commands.js)
+         ===================================================== -->
+    <section class="section" id="daftar" aria-labelledby="h-daftar">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Daftar Perintah</p>
+          <h2 id="h-daftar">Perintah Dasar Linux</h2>
+          <p>8 perintah yang wajib dikuasai pemula. Klik ikon salin untuk menyalin contoh.</p>
+        </div>
+      </div>
+
+      <div class="cmd-grid" id="cmdGrid"></div>
+
+      <aside class="danger-box reveal" aria-label="Perintah berbahaya">
+        <span class="danger-icon"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg></span>
+        <div>
+          <h3>Biar Aman di Terminal</h3>
+          <ul>
+            <li>Jangan jalankan <code>sudo rm -rf /</code>: perintah ini menghapus seluruh sistem.</li>
+            <li>Hindari <code>chmod -R 777</code>: semua orang jadi bisa mengubah file.</li>
+            <li>Jangan menyalin perintah dari internet yang belum kamu pahami, apalagi yang memakai <code>sudo</code>.</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- =====================================================
+         SIMULATOR TERMINAL (commands.js bagian 4 & 5)
+         ===================================================== -->
+    <section class="section" id="simulator" aria-labelledby="h-sim">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Coba Sendiri</p>
+          <h2 id="h-sim">Simulator Terminal</h2>
+          <p>Terminal tiruan yang aman untuk latihan. Selesaikan misinya, atau ketik <code>help</code>.</p>
+        </div>
+      </div>
+
+      <div class="sim-wrap">
+        <div class="sim-terminal reveal">
+          <div class="sim-bar">
+            <i></i><i></i><i></i>
+            <span>Terminal latihan</span>
+            <button class="sim-reset" id="termReset" type="button"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Ulang</button>
+          </div>
+          <div class="sim-screen" id="termScreen">
+            <div id="termOutput" aria-live="polite"></div>
+            <label class="sim-input-row">
+              <span class="t-prompt" id="termPrompt">tux@abyssal:~$</span>
+              <input id="termInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Ketik perintah di simulator" />
+            </label>
+          </div>
+          <div class="sim-suggest" aria-label="Saran perintah">
+            <span>Coba:</span>
+            <button type="button" data-sim="help">help</button>
+            <button type="button" data-sim="ls -l">ls -l</button>
+            <button type="button" data-sim="cd ..">cd ..</button>
+            <button type="button" data-sim="touch baru.txt">touch baru.txt</button>
+            <button type="button" data-sim="uname -a">uname -a</button>
+          </div>
+        </div>
+
+        <aside class="card missions reveal" aria-labelledby="h-missions">
+          <div class="missions-head">
+            <h3 id="h-missions">Misi Latihan</h3>
+            <span id="missionCount">0/6</span>
+          </div>
+          <div class="missions-bar"><span id="missionBar"></span></div>
+          <ol class="mission-list" id="missionList"></ol>
+          <p class="missions-foot">Klik teks kuning untuk mengisi perintah secara otomatis.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========== LANJUT ========== -->
+    <section class="section next-row reveal" aria-label="Halaman berikutnya">
+      <a class="next-card" href="about.html"><small>Sebelumnya</small><b>About Linux</b></a>
+      <a class="next-card is-next" href="installation.html"><small>Selanjutnya</small><b>Install Linux</b><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </section>
+
+    <!-- ========== FOOTER (sama di semua halaman) ========== -->
+    <footer class="footer">
+      <div class="footer-brand"><img src="assets/linux.jpg" alt="" width="28" height="28" /><b>LI<em>NUX</em></b><span>Website pengenalan Linux oleh Kelompok 3 · Abyssal Byte</span></div>
+      <nav class="footer-links" aria-label="Link footer">
+        <a href="about.html">About</a>
+        <a href="index.html#distros">Distro</a>
+        <a href="commands.html">Commands</a>
+        <a href="installation.html">Installation</a>
+        <a href="https://github.com/Batam-Linux-User-Group/Abyssal-Byte" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <small>© <span data-year>2026</span> Abyssal Byte · Open Source. Endless Possibilities.</small>
+    </footer>
+  </main>
+
+  <!-- Tombol kembali ke atas -->
+  <button class="to-top" id="toTop" type="button" aria-label="Kembali ke atas">
+    <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+  <script src="commands.js"></script>
+</body>
+</html>
