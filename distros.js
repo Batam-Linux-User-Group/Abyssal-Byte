@@ -205,3 +205,11 @@ window.addEventListener("resize", () => render(false));
 // Catatan: SENGAJA tidak ada listener "wheel", jadi scroll mouse
 // tidak pernah menggeser carousel.
 render(false);
+
+// Dipakai fitur pencarian (script.js): lompat ke distro tertentu, misalnya showDistro("ubuntu")
+window.showDistro = (slug) => {
+  const index = distros.findIndex((d) => d.slug === slug);
+  if (index === -1) return;
+  const target = CLONES + index;
+  if (target !== pos) go(target - pos);
+};

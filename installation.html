@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="installation.css" />
   <!-- Menandai JavaScript aktif + mengingat sidebar yang disembunyikan (sebelum halaman tampil, supaya tidak berkedip) -->
-  <script>document.documentElement.classList.add("js"); try { if (localStorage.getItem("abyssal-nav-hidden") === "1") document.documentElement.classList.add("nav-hidden"); } catch (e) {}</script>
+  <script>document.documentElement.classList.add("js"); try { if (localStorage.getItem("abyssal-nav-hidden") === "1") document.documentElement.classList.add("nav-hidden"); if (localStorage.getItem("abyssal-nav-dashboard") === "1") document.documentElement.classList.add("nav-dash-open"); } catch (e) {}</script>
 </head>
 <body>
   <!-- Kumpulan ikon. Dipanggil dengan <svg class="icon"><use href="#i-nama"/></svg> -->
@@ -79,12 +79,24 @@
 
     <p class="nav-label">Menu</p>
     <nav class="nav-menu">
-      <a class="nav-link" href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Dashboard</a>
+      <!-- Home + submenu. Klik tulisan = buka halaman Home, klik panah = buka/tutup submenu -->
+      <div class="nav-group">
+        <div class="nav-row">
+          <a class="nav-link nav-parent" href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Home</a>
+          <button class="nav-arrow" id="navDashArrow" type="button" aria-expanded="false" aria-controls="navDashSub" aria-label="Buka submenu Home">
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+          </button>
+        </div>
+        <div class="nav-sub" id="navDashSub">
+          <div class="nav-sub-inner">
+          <a class="nav-sublink" href="index.html#distros">Distributions</a>
+          <a class="nav-sublink" href="index.html#team">Our Team</a>
+          </div>
+        </div>
+      </div>
       <a class="nav-link" href="about.html"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>About Linux</a>
-      <a class="nav-link" href="index.html#distros"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>Distributions</a>
       <a class="nav-link" href="commands.html"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg>Commands</a>
       <a class="nav-link" href="installation.html"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Installation</a>
-      <a class="nav-link" href="index.html#team"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>Our Team</a>
     </nav>
 
     <div class="sidebar-foot"><b>Kelompok 3</b><br>Abyssal Byte · Learn, Share, Grow</div>
@@ -96,7 +108,7 @@
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Tampilkan/sembunyikan menu" title="Tampilkan/sembunyikan menu" aria-controls="sidebar">
         <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
       </button>
-      <a class="topbar-brand" href="index.html" aria-label="Ke Dashboard"><img src="assets/linux.jpg" alt="" /><b>LI<em>NUX</em></b></a>
+      <a class="topbar-brand" href="index.html" aria-label="Ke halaman Home"><img src="assets/linux.jpg" alt="" /><b>LI<em>NUX</em></b></a>
       <div class="topbar-title">Abyssal Byte <span>/</span> <b>Installation</b></div>
       <button class="search-trigger" type="button" data-search-open aria-label="Cari (Ctrl + K)">
         <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
@@ -113,7 +125,7 @@
          ===================================================== -->
     <section class="page-hero" aria-labelledby="insTitle">
       <div>
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Dashboard</a><span>/</span><b>Installation</b></nav>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><b>Installation</b></nav>
         <p class="eyebrow">Linux Installation</p>
         <h1 id="insTitle">Install <em>Linux</em> dengan Aman</h1>
         <p class="page-hero-desc">Pilih cara install, siapkan perangkat, lalu ikuti langkahnya. Contoh langkah memakai Ubuntu, distro yang paling ramah pemula.</p>
